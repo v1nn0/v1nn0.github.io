@@ -216,29 +216,6 @@
       </tags>
   </entry>
   <entry>
-    <title>文章加密示例(密码123v1nn0)</title>
-    <url>/posts/24487.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="e8e87f0ca0bf7c2536f64a877a7417c41802c23b672e72d211a8f1312b4bdc6e">e45e65e129c475eb13417869696b07033b9ea467252e446276b9586f1b2b6504f33ec737173ba5790bf24b0d986f0d2dcb2972e4cd76cd84f1299bfa7668d25a196318a32533de5e344a7b7c013cfb1d6e00b2b8a6fb67a3507f77d42ad3b57657984a2b4aa7852e89d998dddbf6b45b5168867880b36360cea17119e908c35e22fa1babba1f24b86244da395ec6d555</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入密码访问！</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>插件</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>强大的视频下载工具Youtube-dl</title>
     <url>/posts/16598.html</url>
     <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>在小破站看到自己喜欢的视频，想保存下来，可是小破站的视频下载功能只能下载视频部分内容，而且还带水印💢<br>网上的在线解析下载也不是很多，而且说不定哪天就被蜀黍和阿姨咔嚓了<br>这篇文章教你如何使用一款名为<code>Youtube-dl</code>的工具下载视频<br>这个工具相对稳定，你看它的名字就知道是外国人制作的，叔叔不会连外国人都不放过罢（</p>
@@ -300,6 +277,77 @@
         <tag>internet</tag>
         <tag>irc聊天室</tag>
         <tag>频道</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文章加密示例(密码123v1nn0)</title>
+    <url>/posts/24487.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="e8e87f0ca0bf7c2536f64a877a7417c41802c23b672e72d211a8f1312b4bdc6e">e45e65e129c475eb13417869696b07033b9ea467252e446276b9586f1b2b6504f33ec737173ba5790bf24b0d986f0d2dcb2972e4cd76cd84f1299bfa7668d25a196318a32533de5e344a7b7c013cfb1d6e00b2b8a6fb67a3507f77d42ad3b57657984a2b4aa7852e89d998dddbf6b45b5168867880b36360cea17119e908c35e22fa1babba1f24b86244da395ec6d555</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入密码访问！</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>插件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派4B--xrdp远程连接黑屏解决方案</title>
+    <url>/posts/5776.html</url>
+    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>今天我的树莓派4B维修回来了，想赶紧装上系统试一试<br>安装完成后使用xrdp连接，可是会黑屏，以为是分辨率的问题，又上网搜了一堆东西，都没能解决，最终一顿折腾，找到了完美的解决方案，记录一下</p>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><p>执行以下命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gpasswd -d v1nn0 video</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gpasswd -d v1nn0 render</span><br></pre></td></tr></table></figure>
+<p>注意了，执行时请把<code>v1nn0</code>替换成你的用户名！</p>
+<h2 id="系统设置"><a href="#系统设置" class="headerlink" title="系统设置"></a>系统设置</h2><p>直接输入命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
+<p>按照下图选择（使用键盘的小方向键选择）<br>System options<br><img src="/imgs/xrdphp-1.jpg" alt="1"><br>Boot &#x2F; Auto Login<br><img src="/imgs/xrdphp-2.jpg" alt="2"><br>Desktop GUI , requiring user to login<br><img src="/imgs/xrdphp-3.jpg" alt="3"></p>
+<p>最后直接<code>Finish</code></p>
+<p>确定重启树莓派即可！</p>
+]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>xrdp</tag>
+        <tag>树莓派4B</tag>
+        <tag>问题解决</tag>
+        <tag>黑屏</tag>
+        <tag>BUG</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>追加内容 JohnTheRipper的windows版下载及使用</title>
+    <url>/posts/6063.html</url>
+    <content><![CDATA[<p>有的人可能没有kali，今天补一篇教大家用windows下载john破解zip</p>
+<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
+<li>Windows</li>
+<li>JohnTheRipper的其他系统版本</li>
+<li>一个待破解的zip包</li>
+</ul>
+<p>首先需要下载你系统对应的版本<br><a href="https://www.openwall.com/john/">John官网</a><br>你可以在这里找到对应版本，但是不要下载john，要下载john的jumbo版，这个版本貌似是社区开发，里面包含了许多破解其他密码的模块插件等<br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win64.zip">Win64</a><br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win32.zip">Win32</a><br>下载好后应该是一个zip包，解压他，把它放到你能找到的地方，这里建议<br><code>最好不要放在桌面</code><br>可以放在D:盘<br>解压他到一个文件夹，这个文件夹命名为<code>john</code></p>
+<h1 id="开始破解"><a href="#开始破解" class="headerlink" title="开始破解"></a>开始破解</h1><p>这里需要停一下，如果你没看过我写的那篇kali破解的教程，请务必去看一下，因为破解过程和kali没什么区别<br><a href="https://v1nnyawa.github.io/2022/12/13/John-The-Ripper-Crunch-%E7%A0%B4%E8%A7%A3zip%E5%AF%86%E7%A0%81/">Kali破解zip包教程</a><br>好的，在你看完那篇教程之后可以开始使用Windows破解了<br>把你待破解的<code>zip</code>包拖到john文件夹的<code>run</code>目录下，那里面有很多文件，所以在拖动前请给你的zip包起一个显眼的名字，如果你能找到，不起也可以<br>右键打开终端<br>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip2john.exe 你的zip包名 &gt; 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
+<p>这里你会发现，其实和kali没啥区别，只是在zip2john后加上<code>.exe</code>而已<br>执行后会在<code>run</code>目录生成一个和你输入的解析后的hash文件名同名的文件，那就是存储该zip包hash值的文件<br>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">john.exe 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
+<p>等待一会，密码应该可以出来（弱密码的情况下）<br>密码强一点的同理，和在kali一样，需要一个强大的字典，你也可以通过安装<code>crunch</code>来达到生成字典的目的，引用字典的方法和kali也一样，这里不过多赘述</p>
+]]></content>
+      <categories>
+        <category>Kali</category>
+      </categories>
+      <tags>
+        <tag>JohnTheRipper</tag>
       </tags>
   </entry>
   <entry>
@@ -406,54 +454,6 @@
         <tag>vim</tag>
         <tag>ide</tag>
         <tag>editor</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>追加内容 JohnTheRipper的windows版下载及使用</title>
-    <url>/posts/6063.html</url>
-    <content><![CDATA[<p>有的人可能没有kali，今天补一篇教大家用windows下载john破解zip</p>
-<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
-<li>Windows</li>
-<li>JohnTheRipper的其他系统版本</li>
-<li>一个待破解的zip包</li>
-</ul>
-<p>首先需要下载你系统对应的版本<br><a href="https://www.openwall.com/john/">John官网</a><br>你可以在这里找到对应版本，但是不要下载john，要下载john的jumbo版，这个版本貌似是社区开发，里面包含了许多破解其他密码的模块插件等<br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win64.zip">Win64</a><br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win32.zip">Win32</a><br>下载好后应该是一个zip包，解压他，把它放到你能找到的地方，这里建议<br><code>最好不要放在桌面</code><br>可以放在D:盘<br>解压他到一个文件夹，这个文件夹命名为<code>john</code></p>
-<h1 id="开始破解"><a href="#开始破解" class="headerlink" title="开始破解"></a>开始破解</h1><p>这里需要停一下，如果你没看过我写的那篇kali破解的教程，请务必去看一下，因为破解过程和kali没什么区别<br><a href="https://v1nnyawa.github.io/2022/12/13/John-The-Ripper-Crunch-%E7%A0%B4%E8%A7%A3zip%E5%AF%86%E7%A0%81/">Kali破解zip包教程</a><br>好的，在你看完那篇教程之后可以开始使用Windows破解了<br>把你待破解的<code>zip</code>包拖到john文件夹的<code>run</code>目录下，那里面有很多文件，所以在拖动前请给你的zip包起一个显眼的名字，如果你能找到，不起也可以<br>右键打开终端<br>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip2john.exe 你的zip包名 &gt; 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
-<p>这里你会发现，其实和kali没啥区别，只是在zip2john后加上<code>.exe</code>而已<br>执行后会在<code>run</code>目录生成一个和你输入的解析后的hash文件名同名的文件，那就是存储该zip包hash值的文件<br>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">john.exe 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
-<p>等待一会，密码应该可以出来（弱密码的情况下）<br>密码强一点的同理，和在kali一样，需要一个强大的字典，你也可以通过安装<code>crunch</code>来达到生成字典的目的，引用字典的方法和kali也一样，这里不过多赘述</p>
-]]></content>
-      <categories>
-        <category>Kali</category>
-      </categories>
-      <tags>
-        <tag>JohnTheRipper</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派4B--xrdp远程连接黑屏解决方案</title>
-    <url>/posts/5776.html</url>
-    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>今天我的树莓派4B维修回来了，想赶紧装上系统试一试<br>安装完成后使用xrdp连接，可是会黑屏，以为是分辨率的问题，又上网搜了一堆东西，都没能解决，最终一顿折腾，找到了完美的解决方案，记录一下</p>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><p>执行以下命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gpasswd -d v1nn0 video</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gpasswd -d v1nn0 render</span><br></pre></td></tr></table></figure>
-<p>注意了，执行时请把<code>v1nn0</code>替换成你的用户名！</p>
-<h2 id="系统设置"><a href="#系统设置" class="headerlink" title="系统设置"></a>系统设置</h2><p>直接输入命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
-<p>按照下图选择（使用键盘的小方向键选择）<br>System options<br><img src="/imgs/xrdphp-1.jpg" alt="1"><br>Boot &#x2F; Auto Login<br><img src="/imgs/xrdphp-2.jpg" alt="2"><br>Desktop GUI , requiring user to login<br><img src="/imgs/xrdphp-3.jpg" alt="3"></p>
-<p>最后直接<code>Finish</code></p>
-<p>确定重启树莓派即可！</p>
-]]></content>
-      <categories>
-        <category>树莓派</category>
-      </categories>
-      <tags>
-        <tag>xrdp</tag>
-        <tag>树莓派4B</tag>
-        <tag>问题解决</tag>
-        <tag>黑屏</tag>
-        <tag>BUG</tag>
       </tags>
   </entry>
 </search>
