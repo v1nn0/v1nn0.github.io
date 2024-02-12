@@ -206,64 +206,6 @@
       </tags>
   </entry>
   <entry>
-    <title>古老的聊天工具-IRC聊天室 使用教程</title>
-    <url>/article/43469.html</url>
-    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>在很久以前读凯文米特尼克的《反入侵的艺术》时，了解到了IRC这个东东，觉得很有意思，就想赶紧去试一试<br>奈何当时年少，有些东西不太能理解，看了许多教程都没学会<br>不久前，又想重新试试，成功了，在这里分享下过程</p>
-<h1 id="下载一个好用的IRC客户端"><a href="#下载一个好用的IRC客户端" class="headerlink" title="下载一个好用的IRC客户端"></a>下载一个好用的IRC客户端</h1><p>手机端的推荐<br><code>IRCCloud</code>，谷歌商店里有<br>电脑端的推荐<br><code>Mozilla Thunderbird</code><br><a href="https://www.thunderbird.net/zh-CN/">Thunderbird下载</a><br>如果你想用hexirc也没有问题，原理都一样</p>
-<h1 id="魔法"><a href="#魔法" class="headerlink" title="魔法"></a>魔法</h1><p>是的，你需要一个魔法，不过只用一下下就行，完成这步后就可以把魔法扔掉了</p>
-<h1 id="激活Libera账号"><a href="#激活Libera账号" class="headerlink" title="激活Libera账号"></a>激活Libera账号</h1><p>打开魔法<br>访问<a href="https://libera.chat/">Libera官网</a><br>点击右上角的<code>Connect</code>并选择<code>Webchat</code><br>就会跳转到<a href="https://web.libera.chat/">这里</a>，当然你可以直接点击这个这里，跳转去激活<br>进入后<br>输入一个昵称，随便输<br>然后频道写</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">#linuxba</span><br></pre></td></tr></table></figure>
-<p>这是Linux吧的irc频道，你也可以选择别的，随便输入即可，只是为了激活<br>点击<code>开始</code><br>进入后，输入</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/nick 你的用户名</span><br></pre></td></tr></table></figure>
-<p>然后输入</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/msg NickServ REGISTER 你的账号密码 你的邮箱</span><br></pre></td></tr></table></figure>
-<p>回车后应该左侧会打开一个新的聊天<br>进入<br>这时查看你刚才写的邮箱收件箱，会有一个验证命令发过来<br>复制那个验证命令<br>在这个新的聊天中输入，回车，激活成功！</p>
-<h1 id="使用Thunderbird登录账号"><a href="#使用Thunderbird登录账号" class="headerlink" title="使用Thunderbird登录账号"></a>使用Thunderbird登录账号</h1><p>打开Thunderbird，选择<code>聊天</code>，选择<code>入门</code>，填写你的用户名，昵称，密码等等，确定即可<br>等待连接完成就成功了</p>
-<h1 id="隐藏IP"><a href="#隐藏IP" class="headerlink" title="隐藏IP"></a>隐藏IP</h1><p>血的教训啊！！我刚刚使用时没隐藏ip，频道里的一多半外国人都知道我来自中国了，甚至知道我来自哪个省份！<br>不过他们很热情，很贴心，教我怎么隐藏<br>所以啊，一定要cloak了<br>在<code>Thunderbird</code>里点击加入频道<br>在频道一栏写</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">#libera-cloak</span><br></pre></td></tr></table></figure>
-<p>进入频道，输入</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">!cloakme</span><br></pre></td></tr></table></figure>
-<p>他会把你踢出频道，这就成功了，隐藏成功</p>
-<p>另外说一下，那几个外国人怎么查到我ip的<br>其实这些默认都是公开的<br>在频道中输入</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/whois 你要查的用户名</span><br></pre></td></tr></table></figure>
-<p>即可查到那个用户的ip，不过大多数人都开了cloak，查不到</p>
-]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>IRC</tag>
-        <tag>Thunderbird</tag>
-        <tag>chatroom</tag>
-        <tag>internet</tag>
-        <tag>irc聊天室</tag>
-        <tag>频道</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>追加内容 JohnTheRipper的windows版下载及使用</title>
-    <url>/article/6063.html</url>
-    <content><![CDATA[<p>有的人可能没有kali，今天补一篇教大家用windows下载john破解zip</p>
-<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
-<li>Windows</li>
-<li>JohnTheRipper的其他系统版本</li>
-<li>一个待破解的zip包</li>
-</ul>
-<p>首先需要下载你系统对应的版本<br><a href="https://www.openwall.com/john/">John官网</a><br>你可以在这里找到对应版本，但是不要下载john，要下载john的jumbo版，这个版本貌似是社区开发，里面包含了许多破解其他密码的模块插件等<br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win64.zip">Win64</a><br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win32.zip">Win32</a><br>下载好后应该是一个zip包，解压他，把它放到你能找到的地方，这里建议<br><code>最好不要放在桌面</code><br>可以放在D:盘<br>解压他到一个文件夹，这个文件夹命名为<code>john</code></p>
-<h1 id="开始破解"><a href="#开始破解" class="headerlink" title="开始破解"></a>开始破解</h1><p>这里需要停一下，如果你没看过我写的那篇kali破解的教程，请务必去看一下，因为破解过程和kali没什么区别<br><a href="https://v1nnyawa.github.io/2022/12/13/John-The-Ripper-Crunch-%E7%A0%B4%E8%A7%A3zip%E5%AF%86%E7%A0%81/">Kali破解zip包教程</a><br>好的，在你看完那篇教程之后可以开始使用Windows破解了<br>把你待破解的<code>zip</code>包拖到john文件夹的<code>run</code>目录下，那里面有很多文件，所以在拖动前请给你的zip包起一个显眼的名字，如果你能找到，不起也可以<br>右键打开终端<br>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip2john.exe 你的zip包名 &gt; 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
-<p>这里你会发现，其实和kali没啥区别，只是在zip2john后加上<code>.exe</code>而已<br>执行后会在<code>run</code>目录生成一个和你输入的解析后的hash文件名同名的文件，那就是存储该zip包hash值的文件<br>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">john.exe 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
-<p>等待一会，密码应该可以出来（弱密码的情况下）<br>密码强一点的同理，和在kali一样，需要一个强大的字典，你也可以通过安装<code>crunch</code>来达到生成字典的目的，引用字典的方法和kali也一样，这里不过多赘述</p>
-]]></content>
-      <categories>
-        <category>Kali</category>
-      </categories>
-      <tags>
-        <tag>JohnTheRipper</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>终端IDE？WSlUbuntu&amp;Lunarvim！</title>
     <url>/article/47438.html</url>
     <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>前不久，我被neovim强大的拓展性吸引，想要配置并使用nvim，经过三个晚上的折腾，我疯了，原因是在安装插件时需要从github clone，我的网实在有些一言难尽，一天能成功安装一个插件就不错了，无奈之下只能放弃。<br>近来我又发现一款编辑器叫做<code>Lunarvim</code>，它主打的就是开箱即用，不再需要过多耗费精力且不必要的配置，我立刻就心动了，打算安装来试试，Lunarvim是基于neovim进行配置的，官方提供了windows，macos&#x2F;linux和docker试用三个版本，最初我打算安装windows的，不过因为环境配置太过麻烦，我又放弃了，最终选择了wsl安装ubuntu使用<br>结果告诉我，我的选择没有错</p>
@@ -366,6 +308,64 @@
         <tag>vim</tag>
         <tag>ide</tag>
         <tag>editor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>古老的聊天工具-IRC聊天室 使用教程</title>
+    <url>/article/43469.html</url>
+    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>在很久以前读凯文米特尼克的《反入侵的艺术》时，了解到了IRC这个东东，觉得很有意思，就想赶紧去试一试<br>奈何当时年少，有些东西不太能理解，看了许多教程都没学会<br>不久前，又想重新试试，成功了，在这里分享下过程</p>
+<h1 id="下载一个好用的IRC客户端"><a href="#下载一个好用的IRC客户端" class="headerlink" title="下载一个好用的IRC客户端"></a>下载一个好用的IRC客户端</h1><p>手机端的推荐<br><code>IRCCloud</code>，谷歌商店里有<br>电脑端的推荐<br><code>Mozilla Thunderbird</code><br><a href="https://www.thunderbird.net/zh-CN/">Thunderbird下载</a><br>如果你想用hexirc也没有问题，原理都一样</p>
+<h1 id="魔法"><a href="#魔法" class="headerlink" title="魔法"></a>魔法</h1><p>是的，你需要一个魔法，不过只用一下下就行，完成这步后就可以把魔法扔掉了</p>
+<h1 id="激活Libera账号"><a href="#激活Libera账号" class="headerlink" title="激活Libera账号"></a>激活Libera账号</h1><p>打开魔法<br>访问<a href="https://libera.chat/">Libera官网</a><br>点击右上角的<code>Connect</code>并选择<code>Webchat</code><br>就会跳转到<a href="https://web.libera.chat/">这里</a>，当然你可以直接点击这个这里，跳转去激活<br>进入后<br>输入一个昵称，随便输<br>然后频道写</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">#linuxba</span><br></pre></td></tr></table></figure>
+<p>这是Linux吧的irc频道，你也可以选择别的，随便输入即可，只是为了激活<br>点击<code>开始</code><br>进入后，输入</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/nick 你的用户名</span><br></pre></td></tr></table></figure>
+<p>然后输入</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/msg NickServ REGISTER 你的账号密码 你的邮箱</span><br></pre></td></tr></table></figure>
+<p>回车后应该左侧会打开一个新的聊天<br>进入<br>这时查看你刚才写的邮箱收件箱，会有一个验证命令发过来<br>复制那个验证命令<br>在这个新的聊天中输入，回车，激活成功！</p>
+<h1 id="使用Thunderbird登录账号"><a href="#使用Thunderbird登录账号" class="headerlink" title="使用Thunderbird登录账号"></a>使用Thunderbird登录账号</h1><p>打开Thunderbird，选择<code>聊天</code>，选择<code>入门</code>，填写你的用户名，昵称，密码等等，确定即可<br>等待连接完成就成功了</p>
+<h1 id="隐藏IP"><a href="#隐藏IP" class="headerlink" title="隐藏IP"></a>隐藏IP</h1><p>血的教训啊！！我刚刚使用时没隐藏ip，频道里的一多半外国人都知道我来自中国了，甚至知道我来自哪个省份！<br>不过他们很热情，很贴心，教我怎么隐藏<br>所以啊，一定要cloak了<br>在<code>Thunderbird</code>里点击加入频道<br>在频道一栏写</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">#libera-cloak</span><br></pre></td></tr></table></figure>
+<p>进入频道，输入</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">!cloakme</span><br></pre></td></tr></table></figure>
+<p>他会把你踢出频道，这就成功了，隐藏成功</p>
+<p>另外说一下，那几个外国人怎么查到我ip的<br>其实这些默认都是公开的<br>在频道中输入</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/whois 你要查的用户名</span><br></pre></td></tr></table></figure>
+<p>即可查到那个用户的ip，不过大多数人都开了cloak，查不到</p>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>IRC</tag>
+        <tag>Thunderbird</tag>
+        <tag>chatroom</tag>
+        <tag>internet</tag>
+        <tag>irc聊天室</tag>
+        <tag>频道</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>追加内容 JohnTheRipper的windows版下载及使用</title>
+    <url>/article/6063.html</url>
+    <content><![CDATA[<p>有的人可能没有kali，今天补一篇教大家用windows下载john破解zip</p>
+<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
+<li>Windows</li>
+<li>JohnTheRipper的其他系统版本</li>
+<li>一个待破解的zip包</li>
+</ul>
+<p>首先需要下载你系统对应的版本<br><a href="https://www.openwall.com/john/">John官网</a><br>你可以在这里找到对应版本，但是不要下载john，要下载john的jumbo版，这个版本貌似是社区开发，里面包含了许多破解其他密码的模块插件等<br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win64.zip">Win64</a><br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win32.zip">Win32</a><br>下载好后应该是一个zip包，解压他，把它放到你能找到的地方，这里建议<br><code>最好不要放在桌面</code><br>可以放在D:盘<br>解压他到一个文件夹，这个文件夹命名为<code>john</code></p>
+<h1 id="开始破解"><a href="#开始破解" class="headerlink" title="开始破解"></a>开始破解</h1><p>这里需要停一下，如果你没看过我写的那篇kali破解的教程，请务必去看一下，因为破解过程和kali没什么区别<br><a href="https://v1nnyawa.github.io/2022/12/13/John-The-Ripper-Crunch-%E7%A0%B4%E8%A7%A3zip%E5%AF%86%E7%A0%81/">Kali破解zip包教程</a><br>好的，在你看完那篇教程之后可以开始使用Windows破解了<br>把你待破解的<code>zip</code>包拖到john文件夹的<code>run</code>目录下，那里面有很多文件，所以在拖动前请给你的zip包起一个显眼的名字，如果你能找到，不起也可以<br>右键打开终端<br>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip2john.exe 你的zip包名 &gt; 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
+<p>这里你会发现，其实和kali没啥区别，只是在zip2john后加上<code>.exe</code>而已<br>执行后会在<code>run</code>目录生成一个和你输入的解析后的hash文件名同名的文件，那就是存储该zip包hash值的文件<br>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">john.exe 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
+<p>等待一会，密码应该可以出来（弱密码的情况下）<br>密码强一点的同理，和在kali一样，需要一个强大的字典，你也可以通过安装<code>crunch</code>来达到生成字典的目的，引用字典的方法和kali也一样，这里不过多赘述</p>
+]]></content>
+      <categories>
+        <category>Kali</category>
+      </categories>
+      <tags>
+        <tag>JohnTheRipper</tag>
       </tags>
   </entry>
 </search>
