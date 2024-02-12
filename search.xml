@@ -1,77 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Raspberry Pi Pico 制作 BADusb</title>
-    <url>/article/50956.html</url>
-    <content><![CDATA[<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
-<li>Raspberry Pi Pico （真的很便宜，帮焊接引脚的30r左右，不带引脚的20r左右）</li>
-<li>一台电脑</li>
-<li>数据线 （一定是要可以插进Pico板的线）</li>
-</ul>
-<h1 id="烧录CircuitPython"><a href="#烧录CircuitPython" class="headerlink" title="烧录CircuitPython"></a>烧录CircuitPython</h1><p>下载CircuitPython<br><a href="https://downloads.circuitpython.org/bin/raspberry_pi_pico/en_US/adafruit-circuitpython-raspberry_pi_pico-en_US-7.3.3.uf2">CircuitPython</a><br>下载好后，按住pico板上的<code>BOOTSEL</code>按钮，一定要按住，按住的同时把pico用数据线和电脑连接，电脑没有识别到他之前都不要松手！<br>不出意外，你的电脑应该会把它识别为一个大容量存储设备<br>打开它，并把刚才下载的CircuitPython文件(是uf2后缀)的文件拖入到pico的文件夹里，这时pico会自动重启，表现为窗口突然关闭，等待一会，文件夹窗口又出现，里面多出几个文件，说明烧录成功</p>
-<h1 id="为Pico安装HID库"><a href="#为Pico安装HID库" class="headerlink" title="为Pico安装HID库"></a>为Pico安装HID库</h1><p>其实，这个Pico BADusb的原理就是利用HID，模拟人的键鼠输入来达到做某些事的目的，也就是说，任何你可以用键盘鼠标完成的事，他都可以干，只不过是合不合法的问题<br>下载HID库<br><a href="https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases/download/20221214/adafruit-circuitpython-bundle-7.x-mpy-20221214.zip">HID库</a><br>下载好后解压，打开里面的<code>lib</code>目录找到<code>adafruit_hid</code>、<code>adafruit_debouncer.mpy</code>、<code>adafruit_ticks.mpy</code>和<code>asyncio</code>这四个东西，你不需要知道他们是什么，只需要把它们复制或剪切到pico的<code>lib</code>目录下，好的，完成了吗？</p>
-<h1 id="为Pico导入执行Python文件"><a href="#为Pico导入执行Python文件" class="headerlink" title="为Pico导入执行Python文件"></a>为Pico导入执行Python文件</h1><p>下载文件包<br><a href="https://github.com/dbisu/pico-ducky/archive/refs/heads/main.zip">文件包</a><br>解压他，并把里面的<code>duckyinpython.py</code>拖到pico的文件夹下，就是pico的根目录，拖动好后删除原来的<code>code.py</code>并把<code>duckyinpython.py</code>改名为<code>code.py</code><br>好的，现在你只差最后一步就可以完工了</p>
-<h1 id="写入待执行文件"><a href="#写入待执行文件" class="headerlink" title="写入待执行文件"></a>写入待执行文件</h1><p>打开任何编辑器开始编辑你的待执行文件吧，在编写好后意味着，一旦插入这个pico，他将执行那里面的所有代码<br>在编写前，先了解几个简单的语法<br><code>DELAY 毫秒</code> 延迟时间，可以用在两个命令的中间，后面的毫秒就是他要延迟的时间<br><code>GUI r</code> 相当于快捷键<code>Win</code>+<code>R</code><br><code>STRING 文本</code> 输入的文本，后面跟的字就是他会模拟键盘输入输入那些字符<br><code>ENTER</code> 按下回车键<br><code>CTRL</code> 按下CTRL键<br><code>字母</code> 按下某个字母（你指定）<br>这些是比较基础的<br>如果是ctrl组合的快捷键，那么就是<br><code>CTRL 快捷键的第二个键</code><br>这里面的关键字字符全部是大写<br>一行写一个<br>写好后保存名为<code>payload.dd</code><br>这里分享我写的一个简单的rickroll恶搞，具体就是运行cmd打开b站的网址</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELAY 20</span><br><span class="line">CTRL ESC</span><br><span class="line">DELAY 250</span><br><span class="line">STRING cmd</span><br><span class="line">DELAY 250</span><br><span class="line">ENTER</span><br><span class="line">ENTER</span><br><span class="line">DELAY 1500</span><br><span class="line">STRING start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">ENTER</span><br></pre></td></tr></table></figure>
-<p>翻译</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">等待20毫秒</span><br><span class="line">按下CTRL + ESC调出搜索窗口</span><br><span class="line">等待250毫秒</span><br><span class="line">输入 cmd</span><br><span class="line">回车</span><br><span class="line">回车</span><br><span class="line">等待1500毫秒</span><br><span class="line">输入 start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">回车</span><br></pre></td></tr></table></figure>
-<p>你也可以试试<br>保存为<code>payload.dd</code>后把它拖入pico的根目录，这时！！！这时你记住！！一定在拖进去并且确认他已经在里面的一瞬间，拔掉你的pico！！！以免他提前运行<br>好了<br>现在你的BADusb就制作完成了，把他连接到你的电脑试试吧！</p>
-<h1 id="把pico恢复原样或者进行脚本编辑"><a href="#把pico恢复原样或者进行脚本编辑" class="headerlink" title="把pico恢复原样或者进行脚本编辑"></a>把pico恢复原样或者进行脚本编辑</h1><p>你肯定想过，一旦插上他就会以我也不知道多少的输入速度执行里面的命令！！！如果你写的脚本相当狠的话，那就寄了（<br>那么怎么重新编辑里面的脚本或者怎么恢复原样呢？<br>很简单<br>把他拔下来，按住<code>BOOTSEL</code>键再连接回去，和这篇文章开头的过程一样，这时，下载这个文件<br><a href="https://cdn-learn.adafruit.com/assets/assets/000/099/419/original/flash_nuke.uf2?1613329170">恢复文件</a><br>下载好后，把他拖进pico根目录，它就会自动重启，恢复完成！</p>
-]]></content>
-      <categories>
-        <category>树莓派</category>
-      </categories>
-      <tags>
-        <tag>BADUSB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>John The Ripper &amp;&amp; Crunch 破解zip密码</title>
-    <url>/article/59491.html</url>
-    <content><![CDATA[<p>相信大家一定遇到过好不容易下载到的非常棒的项目源码等资源，想立刻部署来玩一玩，可是源码需要密码才能解压的这种情况，今天说说怎么破解它<br>纯文字教程</p>
-<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
-<li>Kali（物理机或虚拟机都可以）</li>
-<li>John The Ripper和Zip2john模块</li>
-<li>一个待破解的zip压缩包</li>
-<li>Crunch</li>
-</ul>
-<p>Kali Linux是基于Debian的Linux发行版， 设计用于数字取证操作系统，并且预装了许多渗透测试软件，John和Crunch就是其中的两个小工具，主要用于密码的爆破，zip2john是john的zip破解模块，也是kali自带的，无需手动安装</p>
-<h1 id="破解过程"><a href="#破解过程" class="headerlink" title="破解过程"></a>破解过程</h1><p>将你要破解的zip压缩包放到一个方便你找到的地方<br>并打开终端cd到该目录，我把它放在了桌面，我建议你也这么做，那么就直接右键桌面选择在此处打开终端即可</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ ls</span><br><span class="line">code.desktop  Pycharm.desktop  rockyou.txt  test.zip</span><br><span class="line">                                                              </span><br><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>这个<code>test.zip</code>就是我们待破解的压缩包，他的密码已经提前进行了设置，这个密码我也不知道，是我闭上眼随便写的，下面我们对它进行破解操作</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ zip2john test.zip &gt; test.hash</span><br><span class="line">ver 1.0 test.zip/test/ is not encrypted, or stored with non-handled compression type</span><br><span class="line">                                                              </span><br><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ ls</span><br><span class="line">code.desktop     rockyou.txt  test.zip</span><br><span class="line">Pycharm.desktop  test.hash</span><br></pre></td></tr></table></figure>
-<p>输入<br><code>zip2john 待破解的zip文件名 &gt; 生成hash值后存入的文件名</code><br>这个hash值得存放文件得后缀你可以写<code>hash</code>或<code>txt</code><br>回车后会在桌面生成一个与你输入同名的<code>xxx.hash</code>文件，那里面就是这个zip的哈希值了<br>你可以输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat hash文件名.hash</span><br></pre></td></tr></table></figure>
-<p>来查看内容是否正确，正不正确咱们光看也看不出来，你只需要看看里面有没有东西就可以</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ cat test.hash </span><br><span class="line">test.zip/test/test.txt:$zip2$*0*3*0*f8b779326ab33928aabc35732200a01e*1663*41*9845267a7d8c5dbf725ba89bfd85219c7163539471ddfcd21ecfd1dd9463ac258395fb68e1cc4272f5d22b253652c17db7c0cbe420d581f8095fd3bedba5346b0a*dbcd543a497351da6218*$/zip2$:test/test.txt:test.zip:test.zip</span><br></pre></td></tr></table></figure>
-<p>成功录入的效果↑<br>这时就可以开始正式的破解了<br>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">john 你的hash文件名</span><br></pre></td></tr></table></figure>
-<p>即可进行破解，现在他进行字典爆破的字典在</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/share/john/password.lst</span><br></pre></td></tr></table></figure>
-<p>的位置，这是john的默认字典<br>但是这种直接输入john的方法只适合破解弱密码，如果是复杂一点或者长一点的可能就解不出来了</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ john test.hash </span><br><span class="line">Using default input encoding: UTF-8</span><br><span class="line">Loaded 1 password hash (ZIP, WinZip [PBKDF2-SHA1 256/256 AVX2 8x])</span><br><span class="line">Cost 1 (HMAC size) is 65 for all loaded hashes</span><br><span class="line">Will run 4 OpenMP threads</span><br><span class="line">Proceeding with single, rules:Single</span><br><span class="line">Press &#x27;q&#x27; or Ctrl-C to abort, almost any other key for status</span><br><span class="line">Almost done: Processing the remaining buffered candidate passwords, if any.</span><br><span class="line">Proceeding with wordlist:/usr/share/john/password.lst</span><br><span class="line">Proceeding with incremental:ASCII</span><br></pre></td></tr></table></figure>
-<p>比如我的这个就有点复杂，不过没关系<br>现在咱们就需要用到<code>Crunch</code>这个工具了，他准确来说应该是一个字典生成工具，可以根据你的需求进行完全的自定义字典，这里如何生成不多赘述，只讲一讲纯数字密码字典的生成<br>在终端输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">crunch 起始的数字位数 结束的数字位数 需要用到的数字 -o 生成后的字典名.txt</span><br></pre></td></tr></table></figure>
-<p>例如，我不知道我设置的密码是什么，但我记得大概是7-8位的数字，我们可以输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">crunch 7 8 0123456789 -o pwd.txt</span><br></pre></td></tr></table></figure>
-<p>那么返回结果是</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ crunch 7 8 0123456789 -o pwd.txt </span><br><span class="line">Crunch will now generate the following amount of data: 980000000 bytes</span><br><span class="line">934 MB</span><br><span class="line">0 GB</span><br><span class="line">0 TB</span><br><span class="line">0 PB</span><br><span class="line">Crunch will now generate the following number of lines: 110000000 </span><br><span class="line"></span><br><span class="line">crunch:  25% completed generating output</span><br><span class="line"></span><br><span class="line">crunch:  48% completed generating output</span><br><span class="line"></span><br><span class="line">crunch:  75% completed generating output</span><br><span class="line"></span><br><span class="line">crunch:  97% completed generating output</span><br><span class="line"></span><br><span class="line">crunch: 100% completed generating output</span><br><span class="line">                                                                </span><br><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ l </span><br><span class="line">code.desktop*  Pycharm.desktop*  test.hash</span><br><span class="line">pwd.txt        rockyou.txt*      test.zip*</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>这里的pwd.txt就是生成的字典了，简单解读一下</p>
-<p>crunch 不用多说是自动这个工具<br>7 是起始位数，注意，这里是位数，不是起始数<br>8 结束位数<br>0123456789 字典内密码的组成，全部是用这些数字组成的<br>-o 将密码保存到指定文件的参数<br>pwd.txt 最后生成的字典名</p>
-<p>切记，如果你知道密码位数的话一定把范围缩小到位数里，不要从1开始生成，不然一个小时也生成不完<br>生成完字典后我们要引用字典进行爆破了<br>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">John --wordlist=你的字典名 你的hash值存储文件名</span><br></pre></td></tr></table></figure>
-<p>执行即可</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ john --wordlist=pwd.txt test.hash </span><br><span class="line">Using default input encoding: UTF-8</span><br><span class="line">Loaded 1 password hash (ZIP, WinZip [PBKDF2-SHA1 256/256 AVX2 8x])</span><br><span class="line">Cost 1 (HMAC size) is 35 for all loaded hashes</span><br><span class="line">Will run 4 OpenMP threads</span><br><span class="line">Press &#x27;q&#x27; or Ctrl-C to abort, almost any other key for status</span><br><span class="line">1598526          (test.zip/test/test.txt)     </span><br><span class="line">1g 0:00:00:37 DONE (2022-12-13 16:00) 0.02698g/s 43325p/s 43325c/s 43325C/s 1597440..1605631</span><br><span class="line">Use the &quot;--show&quot; option to display all of the cracked passwords reliably</span><br><span class="line">Session completed.</span><br></pre></td></tr></table></figure>
-<p>好的密码已经爆破出来了，是<code>1598526</code>，在你的终端上会以黄色字显示出来<br>使用此密码解压后，里面的东西也没有损坏，非常完美<br>如果这些字典都不符合你的要求，你可以在桌面的<code>应用程序</code>处，搜索<code>wordlists</code>，找到同名程序，点击它即可显示出你的kali中的所有内置字典，信息量非常巨大，值得一试<br>如果上述所有方法还是不能成功爆破，那么就请放弃吧。。。</p>
-]]></content>
-      <categories>
-        <category>Kali</category>
-      </categories>
-      <tags>
-        <tag>JohnTheRipper</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2022 Hexo &amp; Github 搭建Blog</title>
     <url>/article/59607.html</url>
     <content><![CDATA[<p>Hexo是一款著名的博客框架，其一向以简洁快速著称，我的博客就是以它为基础搭建的，而且全程不需要花一分钱<br>文字教程</p>
@@ -153,6 +82,102 @@
       </tags>
   </entry>
   <entry>
+    <title>John The Ripper &amp;&amp; Crunch 破解zip密码</title>
+    <url>/article/59491.html</url>
+    <content><![CDATA[<p>相信大家一定遇到过好不容易下载到的非常棒的项目源码等资源，想立刻部署来玩一玩，可是源码需要密码才能解压的这种情况，今天说说怎么破解它<br>纯文字教程</p>
+<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
+<li>Kali（物理机或虚拟机都可以）</li>
+<li>John The Ripper和Zip2john模块</li>
+<li>一个待破解的zip压缩包</li>
+<li>Crunch</li>
+</ul>
+<p>Kali Linux是基于Debian的Linux发行版， 设计用于数字取证操作系统，并且预装了许多渗透测试软件，John和Crunch就是其中的两个小工具，主要用于密码的爆破，zip2john是john的zip破解模块，也是kali自带的，无需手动安装</p>
+<h1 id="破解过程"><a href="#破解过程" class="headerlink" title="破解过程"></a>破解过程</h1><p>将你要破解的zip压缩包放到一个方便你找到的地方<br>并打开终端cd到该目录，我把它放在了桌面，我建议你也这么做，那么就直接右键桌面选择在此处打开终端即可</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ ls</span><br><span class="line">code.desktop  Pycharm.desktop  rockyou.txt  test.zip</span><br><span class="line">                                                              </span><br><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这个<code>test.zip</code>就是我们待破解的压缩包，他的密码已经提前进行了设置，这个密码我也不知道，是我闭上眼随便写的，下面我们对它进行破解操作</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ zip2john test.zip &gt; test.hash</span><br><span class="line">ver 1.0 test.zip/test/ is not encrypted, or stored with non-handled compression type</span><br><span class="line">                                                              </span><br><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ ls</span><br><span class="line">code.desktop     rockyou.txt  test.zip</span><br><span class="line">Pycharm.desktop  test.hash</span><br></pre></td></tr></table></figure>
+<p>输入<br><code>zip2john 待破解的zip文件名 &gt; 生成hash值后存入的文件名</code><br>这个hash值得存放文件得后缀你可以写<code>hash</code>或<code>txt</code><br>回车后会在桌面生成一个与你输入同名的<code>xxx.hash</code>文件，那里面就是这个zip的哈希值了<br>你可以输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat hash文件名.hash</span><br></pre></td></tr></table></figure>
+<p>来查看内容是否正确，正不正确咱们光看也看不出来，你只需要看看里面有没有东西就可以</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ cat test.hash </span><br><span class="line">test.zip/test/test.txt:$zip2$*0*3*0*f8b779326ab33928aabc35732200a01e*1663*41*9845267a7d8c5dbf725ba89bfd85219c7163539471ddfcd21ecfd1dd9463ac258395fb68e1cc4272f5d22b253652c17db7c0cbe420d581f8095fd3bedba5346b0a*dbcd543a497351da6218*$/zip2$:test/test.txt:test.zip:test.zip</span><br></pre></td></tr></table></figure>
+<p>成功录入的效果↑<br>这时就可以开始正式的破解了<br>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">john 你的hash文件名</span><br></pre></td></tr></table></figure>
+<p>即可进行破解，现在他进行字典爆破的字典在</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/share/john/password.lst</span><br></pre></td></tr></table></figure>
+<p>的位置，这是john的默认字典<br>但是这种直接输入john的方法只适合破解弱密码，如果是复杂一点或者长一点的可能就解不出来了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ john test.hash </span><br><span class="line">Using default input encoding: UTF-8</span><br><span class="line">Loaded 1 password hash (ZIP, WinZip [PBKDF2-SHA1 256/256 AVX2 8x])</span><br><span class="line">Cost 1 (HMAC size) is 65 for all loaded hashes</span><br><span class="line">Will run 4 OpenMP threads</span><br><span class="line">Proceeding with single, rules:Single</span><br><span class="line">Press &#x27;q&#x27; or Ctrl-C to abort, almost any other key for status</span><br><span class="line">Almost done: Processing the remaining buffered candidate passwords, if any.</span><br><span class="line">Proceeding with wordlist:/usr/share/john/password.lst</span><br><span class="line">Proceeding with incremental:ASCII</span><br></pre></td></tr></table></figure>
+<p>比如我的这个就有点复杂，不过没关系<br>现在咱们就需要用到<code>Crunch</code>这个工具了，他准确来说应该是一个字典生成工具，可以根据你的需求进行完全的自定义字典，这里如何生成不多赘述，只讲一讲纯数字密码字典的生成<br>在终端输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">crunch 起始的数字位数 结束的数字位数 需要用到的数字 -o 生成后的字典名.txt</span><br></pre></td></tr></table></figure>
+<p>例如，我不知道我设置的密码是什么，但我记得大概是7-8位的数字，我们可以输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">crunch 7 8 0123456789 -o pwd.txt</span><br></pre></td></tr></table></figure>
+<p>那么返回结果是</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ crunch 7 8 0123456789 -o pwd.txt </span><br><span class="line">Crunch will now generate the following amount of data: 980000000 bytes</span><br><span class="line">934 MB</span><br><span class="line">0 GB</span><br><span class="line">0 TB</span><br><span class="line">0 PB</span><br><span class="line">Crunch will now generate the following number of lines: 110000000 </span><br><span class="line"></span><br><span class="line">crunch:  25% completed generating output</span><br><span class="line"></span><br><span class="line">crunch:  48% completed generating output</span><br><span class="line"></span><br><span class="line">crunch:  75% completed generating output</span><br><span class="line"></span><br><span class="line">crunch:  97% completed generating output</span><br><span class="line"></span><br><span class="line">crunch: 100% completed generating output</span><br><span class="line">                                                                </span><br><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ l </span><br><span class="line">code.desktop*  Pycharm.desktop*  test.hash</span><br><span class="line">pwd.txt        rockyou.txt*      test.zip*</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这里的pwd.txt就是生成的字典了，简单解读一下</p>
+<p>crunch 不用多说是自动这个工具<br>7 是起始位数，注意，这里是位数，不是起始数<br>8 结束位数<br>0123456789 字典内密码的组成，全部是用这些数字组成的<br>-o 将密码保存到指定文件的参数<br>pwd.txt 最后生成的字典名</p>
+<p>切记，如果你知道密码位数的话一定把范围缩小到位数里，不要从1开始生成，不然一个小时也生成不完<br>生成完字典后我们要引用字典进行爆破了<br>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">John --wordlist=你的字典名 你的hash值存储文件名</span><br></pre></td></tr></table></figure>
+<p>执行即可</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(v1nny㉿v1nny)-[~/桌面]</span><br><span class="line">└─$ john --wordlist=pwd.txt test.hash </span><br><span class="line">Using default input encoding: UTF-8</span><br><span class="line">Loaded 1 password hash (ZIP, WinZip [PBKDF2-SHA1 256/256 AVX2 8x])</span><br><span class="line">Cost 1 (HMAC size) is 35 for all loaded hashes</span><br><span class="line">Will run 4 OpenMP threads</span><br><span class="line">Press &#x27;q&#x27; or Ctrl-C to abort, almost any other key for status</span><br><span class="line">1598526          (test.zip/test/test.txt)     </span><br><span class="line">1g 0:00:00:37 DONE (2022-12-13 16:00) 0.02698g/s 43325p/s 43325c/s 43325C/s 1597440..1605631</span><br><span class="line">Use the &quot;--show&quot; option to display all of the cracked passwords reliably</span><br><span class="line">Session completed.</span><br></pre></td></tr></table></figure>
+<p>好的密码已经爆破出来了，是<code>1598526</code>，在你的终端上会以黄色字显示出来<br>使用此密码解压后，里面的东西也没有损坏，非常完美<br>如果这些字典都不符合你的要求，你可以在桌面的<code>应用程序</code>处，搜索<code>wordlists</code>，找到同名程序，点击它即可显示出你的kali中的所有内置字典，信息量非常巨大，值得一试<br>如果上述所有方法还是不能成功爆破，那么就请放弃吧。。。</p>
+]]></content>
+      <categories>
+        <category>Kali</category>
+      </categories>
+      <tags>
+        <tag>JohnTheRipper</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Raspberry Pi Pico 制作 BADusb</title>
+    <url>/article/50956.html</url>
+    <content><![CDATA[<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
+<li>Raspberry Pi Pico （真的很便宜，帮焊接引脚的30r左右，不带引脚的20r左右）</li>
+<li>一台电脑</li>
+<li>数据线 （一定是要可以插进Pico板的线）</li>
+</ul>
+<h1 id="烧录CircuitPython"><a href="#烧录CircuitPython" class="headerlink" title="烧录CircuitPython"></a>烧录CircuitPython</h1><p>下载CircuitPython<br><a href="https://downloads.circuitpython.org/bin/raspberry_pi_pico/en_US/adafruit-circuitpython-raspberry_pi_pico-en_US-7.3.3.uf2">CircuitPython</a><br>下载好后，按住pico板上的<code>BOOTSEL</code>按钮，一定要按住，按住的同时把pico用数据线和电脑连接，电脑没有识别到他之前都不要松手！<br>不出意外，你的电脑应该会把它识别为一个大容量存储设备<br>打开它，并把刚才下载的CircuitPython文件(是uf2后缀)的文件拖入到pico的文件夹里，这时pico会自动重启，表现为窗口突然关闭，等待一会，文件夹窗口又出现，里面多出几个文件，说明烧录成功</p>
+<h1 id="为Pico安装HID库"><a href="#为Pico安装HID库" class="headerlink" title="为Pico安装HID库"></a>为Pico安装HID库</h1><p>其实，这个Pico BADusb的原理就是利用HID，模拟人的键鼠输入来达到做某些事的目的，也就是说，任何你可以用键盘鼠标完成的事，他都可以干，只不过是合不合法的问题<br>下载HID库<br><a href="https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases/download/20221214/adafruit-circuitpython-bundle-7.x-mpy-20221214.zip">HID库</a><br>下载好后解压，打开里面的<code>lib</code>目录找到<code>adafruit_hid</code>、<code>adafruit_debouncer.mpy</code>、<code>adafruit_ticks.mpy</code>和<code>asyncio</code>这四个东西，你不需要知道他们是什么，只需要把它们复制或剪切到pico的<code>lib</code>目录下，好的，完成了吗？</p>
+<h1 id="为Pico导入执行Python文件"><a href="#为Pico导入执行Python文件" class="headerlink" title="为Pico导入执行Python文件"></a>为Pico导入执行Python文件</h1><p>下载文件包<br><a href="https://github.com/dbisu/pico-ducky/archive/refs/heads/main.zip">文件包</a><br>解压他，并把里面的<code>duckyinpython.py</code>拖到pico的文件夹下，就是pico的根目录，拖动好后删除原来的<code>code.py</code>并把<code>duckyinpython.py</code>改名为<code>code.py</code><br>好的，现在你只差最后一步就可以完工了</p>
+<h1 id="写入待执行文件"><a href="#写入待执行文件" class="headerlink" title="写入待执行文件"></a>写入待执行文件</h1><p>打开任何编辑器开始编辑你的待执行文件吧，在编写好后意味着，一旦插入这个pico，他将执行那里面的所有代码<br>在编写前，先了解几个简单的语法<br><code>DELAY 毫秒</code> 延迟时间，可以用在两个命令的中间，后面的毫秒就是他要延迟的时间<br><code>GUI r</code> 相当于快捷键<code>Win</code>+<code>R</code><br><code>STRING 文本</code> 输入的文本，后面跟的字就是他会模拟键盘输入输入那些字符<br><code>ENTER</code> 按下回车键<br><code>CTRL</code> 按下CTRL键<br><code>字母</code> 按下某个字母（你指定）<br>这些是比较基础的<br>如果是ctrl组合的快捷键，那么就是<br><code>CTRL 快捷键的第二个键</code><br>这里面的关键字字符全部是大写<br>一行写一个<br>写好后保存名为<code>payload.dd</code><br>这里分享我写的一个简单的rickroll恶搞，具体就是运行cmd打开b站的网址</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELAY 20</span><br><span class="line">CTRL ESC</span><br><span class="line">DELAY 250</span><br><span class="line">STRING cmd</span><br><span class="line">DELAY 250</span><br><span class="line">ENTER</span><br><span class="line">ENTER</span><br><span class="line">DELAY 1500</span><br><span class="line">STRING start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">ENTER</span><br></pre></td></tr></table></figure>
+<p>翻译</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">等待20毫秒</span><br><span class="line">按下CTRL + ESC调出搜索窗口</span><br><span class="line">等待250毫秒</span><br><span class="line">输入 cmd</span><br><span class="line">回车</span><br><span class="line">回车</span><br><span class="line">等待1500毫秒</span><br><span class="line">输入 start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">回车</span><br></pre></td></tr></table></figure>
+<p>你也可以试试<br>保存为<code>payload.dd</code>后把它拖入pico的根目录，这时！！！这时你记住！！一定在拖进去并且确认他已经在里面的一瞬间，拔掉你的pico！！！以免他提前运行<br>好了<br>现在你的BADusb就制作完成了，把他连接到你的电脑试试吧！</p>
+<h1 id="把pico恢复原样或者进行脚本编辑"><a href="#把pico恢复原样或者进行脚本编辑" class="headerlink" title="把pico恢复原样或者进行脚本编辑"></a>把pico恢复原样或者进行脚本编辑</h1><p>你肯定想过，一旦插上他就会以我也不知道多少的输入速度执行里面的命令！！！如果你写的脚本相当狠的话，那就寄了（<br>那么怎么重新编辑里面的脚本或者怎么恢复原样呢？<br>很简单<br>把他拔下来，按住<code>BOOTSEL</code>键再连接回去，和这篇文章开头的过程一样，这时，下载这个文件<br><a href="https://cdn-learn.adafruit.com/assets/assets/000/099/419/original/flash_nuke.uf2?1613329170">恢复文件</a><br>下载好后，把他拖进pico根目录，它就会自动重启，恢复完成！</p>
+]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>BADUSB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派4B--xrdp远程连接黑屏解决方案</title>
+    <url>/article/5776.html</url>
+    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>今天我的树莓派4B维修回来了，想赶紧装上系统试一试<br>安装完成后使用xrdp连接，可是会黑屏，以为是分辨率的问题，又上网搜了一堆东西，都没能解决，最终一顿折腾，找到了完美的解决方案，记录一下</p>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><p>执行以下命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gpasswd -d v1nn0 video</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gpasswd -d v1nn0 render</span><br></pre></td></tr></table></figure>
+<p>注意了，执行时请把<code>v1nn0</code>替换成你的用户名！</p>
+<h2 id="系统设置"><a href="#系统设置" class="headerlink" title="系统设置"></a>系统设置</h2><p>直接输入命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
+<p>按照下图选择（使用键盘的小方向键选择）<br>System options<br><img src="/imgs/xrdphp-1.jpg" alt="1"><br>Boot &#x2F; Auto Login<br><img src="/imgs/xrdphp-2.jpg" alt="2"><br>Desktop GUI , requiring user to login<br><img src="/imgs/xrdphp-3.jpg" alt="3"></p>
+<p>最后直接<code>Finish</code></p>
+<p>确定重启树莓派即可！</p>
+]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>xrdp</tag>
+        <tag>树莓派4B</tag>
+        <tag>问题解决</tag>
+        <tag>黑屏</tag>
+        <tag>BUG</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>强大的视频下载工具Youtube-dl</title>
     <url>/article/16598.html</url>
     <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>在小破站看到自己喜欢的视频，想保存下来，可是小破站的视频下载功能只能下载视频部分内容，而且还带水印💢<br>网上的在线解析下载也不是很多，而且说不定哪天就被蜀黍和阿姨咔嚓了<br>这篇文章教你如何使用一款名为<code>Youtube-dl</code>的工具下载视频<br>这个工具相对稳定，你看它的名字就知道是外国人制作的，叔叔不会连外国人都不放过罢（</p>
@@ -213,31 +238,6 @@
         <tag>internet</tag>
         <tag>irc聊天室</tag>
         <tag>频道</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派4B--xrdp远程连接黑屏解决方案</title>
-    <url>/article/5776.html</url>
-    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>今天我的树莓派4B维修回来了，想赶紧装上系统试一试<br>安装完成后使用xrdp连接，可是会黑屏，以为是分辨率的问题，又上网搜了一堆东西，都没能解决，最终一顿折腾，找到了完美的解决方案，记录一下</p>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><p>执行以下命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gpasswd -d v1nn0 video</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gpasswd -d v1nn0 render</span><br></pre></td></tr></table></figure>
-<p>注意了，执行时请把<code>v1nn0</code>替换成你的用户名！</p>
-<h2 id="系统设置"><a href="#系统设置" class="headerlink" title="系统设置"></a>系统设置</h2><p>直接输入命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
-<p>按照下图选择（使用键盘的小方向键选择）<br>System options<br><img src="/imgs/xrdphp-1.jpg" alt="1"><br>Boot &#x2F; Auto Login<br><img src="/imgs/xrdphp-2.jpg" alt="2"><br>Desktop GUI , requiring user to login<br><img src="/imgs/xrdphp-3.jpg" alt="3"></p>
-<p>最后直接<code>Finish</code></p>
-<p>确定重启树莓派即可！</p>
-]]></content>
-      <categories>
-        <category>树莓派</category>
-      </categories>
-      <tags>
-        <tag>xrdp</tag>
-        <tag>树莓派4B</tag>
-        <tag>问题解决</tag>
-        <tag>黑屏</tag>
-        <tag>BUG</tag>
       </tags>
   </entry>
   <entry>
