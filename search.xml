@@ -82,38 +82,31 @@
       </tags>
   </entry>
   <entry>
-    <title>古老的聊天工具-IRC聊天室 使用教程</title>
-    <url>/article/43469.html</url>
-    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>在很久以前读凯文米特尼克的《反入侵的艺术》时，了解到了IRC这个东东，觉得很有意思，就想赶紧去试一试<br>奈何当时年少，有些东西不太能理解，看了许多教程都没学会<br>不久前，又想重新试试，成功了，在这里分享下过程</p>
-<h1 id="下载一个好用的IRC客户端"><a href="#下载一个好用的IRC客户端" class="headerlink" title="下载一个好用的IRC客户端"></a>下载一个好用的IRC客户端</h1><p>手机端的推荐<br><code>IRCCloud</code>，谷歌商店里有<br>电脑端的推荐<br><code>Mozilla Thunderbird</code><br><a href="https://www.thunderbird.net/zh-CN/">Thunderbird下载</a><br>如果你想用hexirc也没有问题，原理都一样</p>
-<h1 id="魔法"><a href="#魔法" class="headerlink" title="魔法"></a>魔法</h1><p>是的，你需要一个魔法，不过只用一下下就行，完成这步后就可以把魔法扔掉了</p>
-<h1 id="激活Libera账号"><a href="#激活Libera账号" class="headerlink" title="激活Libera账号"></a>激活Libera账号</h1><p>打开魔法<br>访问<a href="https://libera.chat/">Libera官网</a><br>点击右上角的<code>Connect</code>并选择<code>Webchat</code><br>就会跳转到<a href="https://web.libera.chat/">这里</a>，当然你可以直接点击这个这里，跳转去激活<br>进入后<br>输入一个昵称，随便输<br>然后频道写</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">#linuxba</span><br></pre></td></tr></table></figure>
-<p>这是Linux吧的irc频道，你也可以选择别的，随便输入即可，只是为了激活<br>点击<code>开始</code><br>进入后，输入</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/nick 你的用户名</span><br></pre></td></tr></table></figure>
-<p>然后输入</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/msg NickServ REGISTER 你的账号密码 你的邮箱</span><br></pre></td></tr></table></figure>
-<p>回车后应该左侧会打开一个新的聊天<br>进入<br>这时查看你刚才写的邮箱收件箱，会有一个验证命令发过来<br>复制那个验证命令<br>在这个新的聊天中输入，回车，激活成功！</p>
-<h1 id="使用Thunderbird登录账号"><a href="#使用Thunderbird登录账号" class="headerlink" title="使用Thunderbird登录账号"></a>使用Thunderbird登录账号</h1><p>打开Thunderbird，选择<code>聊天</code>，选择<code>入门</code>，填写你的用户名，昵称，密码等等，确定即可<br>等待连接完成就成功了</p>
-<h1 id="隐藏IP"><a href="#隐藏IP" class="headerlink" title="隐藏IP"></a>隐藏IP</h1><p>血的教训啊！！我刚刚使用时没隐藏ip，频道里的一多半外国人都知道我来自中国了，甚至知道我来自哪个省份！<br>不过他们很热情，很贴心，教我怎么隐藏<br>所以啊，一定要cloak了<br>在<code>Thunderbird</code>里点击加入频道<br>在频道一栏写</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">#libera-cloak</span><br></pre></td></tr></table></figure>
-<p>进入频道，输入</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">!cloakme</span><br></pre></td></tr></table></figure>
-<p>他会把你踢出频道，这就成功了，隐藏成功</p>
-<p>另外说一下，那几个外国人怎么查到我ip的<br>其实这些默认都是公开的<br>在频道中输入</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/whois 你要查的用户名</span><br></pre></td></tr></table></figure>
-<p>即可查到那个用户的ip，不过大多数人都开了cloak，查不到</p>
+    <title>强大的视频下载工具Youtube-dl</title>
+    <url>/article/16598.html</url>
+    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>在小破站看到自己喜欢的视频，想保存下来，可是小破站的视频下载功能只能下载视频部分内容，而且还带水印💢<br>网上的在线解析下载也不是很多，而且说不定哪天就被蜀黍和阿姨咔嚓了<br>这篇文章教你如何使用一款名为<code>Youtube-dl</code>的工具下载视频<br>这个工具相对稳定，你看它的名字就知道是外国人制作的，叔叔不会连外国人都不放过罢（</p>
+<h1 id="安装Pip"><a href="#安装Pip" class="headerlink" title="安装Pip"></a>安装Pip</h1><p>这个工具可以在大多命令行运行，需要通过pip安装<br>下面将以Utermux为例，演示安装步骤和使用方法，你也可以用termux，电脑可以是windows，ubuntu任何系统的命令行<br>输入命令<br>在termux上安装</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pkg install python3</span><br></pre></td></tr></table></figure>
+<p>输入命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install python3 -y</span><br></pre></td></tr></table></figure>
+<p>在具有apt包的系统上安装<br>如果你是windows的话，直接在Python官网下载python3环境即可<br><a href="https://www.python.org/">Python官网</a></p>
+<h1 id="安装Youtube-dl"><a href="#安装Youtube-dl" class="headerlink" title="安装Youtube-dl"></a>安装Youtube-dl</h1><p>如果你是termux或windows<br>执行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install youtube-dl</span><br></pre></td></tr></table></figure>
+<p>如果你是linux<br>执行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo pip install youtube-dl</span><br></pre></td></tr></table></figure>
+<p><img src="/imgs/youtubedl-1.jpg" alt="1"><br>等待运行完成即可</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>执行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">youtube-dl 你想要下载的b站视频的链接</span><br></pre></td></tr></table></figure>
+<p>注意，这里是链接，https打头的那个！<br>当然也可以是youtube视频链接，方法同理<br><img src="/imgs/youtubedl-2.jpg" alt="2"><br>输入<code>ls</code>，如果你是windows就输入<code>dir</code><br><img src="/imgs/youtubedl-3.jpg" alt="3"><br>就能看到与你相下载的视频同名的文件了<br>如果你用的电脑，可以直接打开该目录查看视频<br>如果你用的termux或其他手机终端，我建议你把它copy到一个便于寻找的位置<br>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp 视频文件名 你想复制到地方</span><br></pre></td></tr></table></figure>
+<p><img src="/imgs/youtubedl-4.jpg" alt="4"><br>即可<br>使用文件管理工具找到那个位置，就可以愉快的看视频了<br><img src="/imgs/youtubedl-5.jpg" alt="5"></p>
 ]]></content>
       <categories>
         <category>其他</category>
       </categories>
       <tags>
-        <tag>IRC</tag>
-        <tag>Thunderbird</tag>
-        <tag>chatroom</tag>
-        <tag>internet</tag>
-        <tag>irc聊天室</tag>
-        <tag>频道</tag>
+        <tag>youtube-dl</tag>
+        <tag>termux</tag>
       </tags>
   </entry>
   <entry>
@@ -188,31 +181,38 @@
       </tags>
   </entry>
   <entry>
-    <title>强大的视频下载工具Youtube-dl</title>
-    <url>/article/16598.html</url>
-    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>在小破站看到自己喜欢的视频，想保存下来，可是小破站的视频下载功能只能下载视频部分内容，而且还带水印💢<br>网上的在线解析下载也不是很多，而且说不定哪天就被蜀黍和阿姨咔嚓了<br>这篇文章教你如何使用一款名为<code>Youtube-dl</code>的工具下载视频<br>这个工具相对稳定，你看它的名字就知道是外国人制作的，叔叔不会连外国人都不放过罢（</p>
-<h1 id="安装Pip"><a href="#安装Pip" class="headerlink" title="安装Pip"></a>安装Pip</h1><p>这个工具可以在大多命令行运行，需要通过pip安装<br>下面将以Utermux为例，演示安装步骤和使用方法，你也可以用termux，电脑可以是windows，ubuntu任何系统的命令行<br>输入命令<br>在termux上安装</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pkg install python3</span><br></pre></td></tr></table></figure>
-<p>输入命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install python3 -y</span><br></pre></td></tr></table></figure>
-<p>在具有apt包的系统上安装<br>如果你是windows的话，直接在Python官网下载python3环境即可<br><a href="https://www.python.org/">Python官网</a></p>
-<h1 id="安装Youtube-dl"><a href="#安装Youtube-dl" class="headerlink" title="安装Youtube-dl"></a>安装Youtube-dl</h1><p>如果你是termux或windows<br>执行命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install youtube-dl</span><br></pre></td></tr></table></figure>
-<p>如果你是linux<br>执行命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo pip install youtube-dl</span><br></pre></td></tr></table></figure>
-<p><img src="/imgs/youtubedl-1.jpg" alt="1"><br>等待运行完成即可</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>执行命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">youtube-dl 你想要下载的b站视频的链接</span><br></pre></td></tr></table></figure>
-<p>注意，这里是链接，https打头的那个！<br>当然也可以是youtube视频链接，方法同理<br><img src="/imgs/youtubedl-2.jpg" alt="2"><br>输入<code>ls</code>，如果你是windows就输入<code>dir</code><br><img src="/imgs/youtubedl-3.jpg" alt="3"><br>就能看到与你相下载的视频同名的文件了<br>如果你用的电脑，可以直接打开该目录查看视频<br>如果你用的termux或其他手机终端，我建议你把它copy到一个便于寻找的位置<br>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp 视频文件名 你想复制到地方</span><br></pre></td></tr></table></figure>
-<p><img src="/imgs/youtubedl-4.jpg" alt="4"><br>即可<br>使用文件管理工具找到那个位置，就可以愉快的看视频了<br><img src="/imgs/youtubedl-5.jpg" alt="5"></p>
+    <title>古老的聊天工具-IRC聊天室 使用教程</title>
+    <url>/article/43469.html</url>
+    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>在很久以前读凯文米特尼克的《反入侵的艺术》时，了解到了IRC这个东东，觉得很有意思，就想赶紧去试一试<br>奈何当时年少，有些东西不太能理解，看了许多教程都没学会<br>不久前，又想重新试试，成功了，在这里分享下过程</p>
+<h1 id="下载一个好用的IRC客户端"><a href="#下载一个好用的IRC客户端" class="headerlink" title="下载一个好用的IRC客户端"></a>下载一个好用的IRC客户端</h1><p>手机端的推荐<br><code>IRCCloud</code>，谷歌商店里有<br>电脑端的推荐<br><code>Mozilla Thunderbird</code><br><a href="https://www.thunderbird.net/zh-CN/">Thunderbird下载</a><br>如果你想用hexirc也没有问题，原理都一样</p>
+<h1 id="魔法"><a href="#魔法" class="headerlink" title="魔法"></a>魔法</h1><p>是的，你需要一个魔法，不过只用一下下就行，完成这步后就可以把魔法扔掉了</p>
+<h1 id="激活Libera账号"><a href="#激活Libera账号" class="headerlink" title="激活Libera账号"></a>激活Libera账号</h1><p>打开魔法<br>访问<a href="https://libera.chat/">Libera官网</a><br>点击右上角的<code>Connect</code>并选择<code>Webchat</code><br>就会跳转到<a href="https://web.libera.chat/">这里</a>，当然你可以直接点击这个这里，跳转去激活<br>进入后<br>输入一个昵称，随便输<br>然后频道写</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">#linuxba</span><br></pre></td></tr></table></figure>
+<p>这是Linux吧的irc频道，你也可以选择别的，随便输入即可，只是为了激活<br>点击<code>开始</code><br>进入后，输入</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/nick 你的用户名</span><br></pre></td></tr></table></figure>
+<p>然后输入</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/msg NickServ REGISTER 你的账号密码 你的邮箱</span><br></pre></td></tr></table></figure>
+<p>回车后应该左侧会打开一个新的聊天<br>进入<br>这时查看你刚才写的邮箱收件箱，会有一个验证命令发过来<br>复制那个验证命令<br>在这个新的聊天中输入，回车，激活成功！</p>
+<h1 id="使用Thunderbird登录账号"><a href="#使用Thunderbird登录账号" class="headerlink" title="使用Thunderbird登录账号"></a>使用Thunderbird登录账号</h1><p>打开Thunderbird，选择<code>聊天</code>，选择<code>入门</code>，填写你的用户名，昵称，密码等等，确定即可<br>等待连接完成就成功了</p>
+<h1 id="隐藏IP"><a href="#隐藏IP" class="headerlink" title="隐藏IP"></a>隐藏IP</h1><p>血的教训啊！！我刚刚使用时没隐藏ip，频道里的一多半外国人都知道我来自中国了，甚至知道我来自哪个省份！<br>不过他们很热情，很贴心，教我怎么隐藏<br>所以啊，一定要cloak了<br>在<code>Thunderbird</code>里点击加入频道<br>在频道一栏写</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">#libera-cloak</span><br></pre></td></tr></table></figure>
+<p>进入频道，输入</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">!cloakme</span><br></pre></td></tr></table></figure>
+<p>他会把你踢出频道，这就成功了，隐藏成功</p>
+<p>另外说一下，那几个外国人怎么查到我ip的<br>其实这些默认都是公开的<br>在频道中输入</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/whois 你要查的用户名</span><br></pre></td></tr></table></figure>
+<p>即可查到那个用户的ip，不过大多数人都开了cloak，查不到</p>
 ]]></content>
       <categories>
         <category>其他</category>
       </categories>
       <tags>
-        <tag>youtube-dl</tag>
-        <tag>termux</tag>
+        <tag>IRC</tag>
+        <tag>Thunderbird</tag>
+        <tag>chatroom</tag>
+        <tag>internet</tag>
+        <tag>irc聊天室</tag>
+        <tag>频道</tag>
       </tags>
   </entry>
   <entry>
@@ -238,6 +238,29 @@
         <tag>问题解决</tag>
         <tag>黑屏</tag>
         <tag>BUG</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>追加内容 JohnTheRipper的windows版下载及使用</title>
+    <url>/article/6063.html</url>
+    <content><![CDATA[<p>有的人可能没有kali，今天补一篇教大家用windows下载john破解zip</p>
+<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
+<li>Windows</li>
+<li>JohnTheRipper的其他系统版本</li>
+<li>一个待破解的zip包</li>
+</ul>
+<p>首先需要下载你系统对应的版本<br><a href="https://www.openwall.com/john/">John官网</a><br>你可以在这里找到对应版本，但是不要下载john，要下载john的jumbo版，这个版本貌似是社区开发，里面包含了许多破解其他密码的模块插件等<br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win64.zip">Win64</a><br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win32.zip">Win32</a><br>下载好后应该是一个zip包，解压他，把它放到你能找到的地方，这里建议<br><code>最好不要放在桌面</code><br>可以放在D:盘<br>解压他到一个文件夹，这个文件夹命名为<code>john</code></p>
+<h1 id="开始破解"><a href="#开始破解" class="headerlink" title="开始破解"></a>开始破解</h1><p>这里需要停一下，如果你没看过我写的那篇kali破解的教程，请务必去看一下，因为破解过程和kali没什么区别<br><a href="https://v1nnyawa.github.io/2022/12/13/John-The-Ripper-Crunch-%E7%A0%B4%E8%A7%A3zip%E5%AF%86%E7%A0%81/">Kali破解zip包教程</a><br>好的，在你看完那篇教程之后可以开始使用Windows破解了<br>把你待破解的<code>zip</code>包拖到john文件夹的<code>run</code>目录下，那里面有很多文件，所以在拖动前请给你的zip包起一个显眼的名字，如果你能找到，不起也可以<br>右键打开终端<br>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip2john.exe 你的zip包名 &gt; 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
+<p>这里你会发现，其实和kali没啥区别，只是在zip2john后加上<code>.exe</code>而已<br>执行后会在<code>run</code>目录生成一个和你输入的解析后的hash文件名同名的文件，那就是存储该zip包hash值的文件<br>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">john.exe 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
+<p>等待一会，密码应该可以出来（弱密码的情况下）<br>密码强一点的同理，和在kali一样，需要一个强大的字典，你也可以通过安装<code>crunch</code>来达到生成字典的目的，引用字典的方法和kali也一样，这里不过多赘述</p>
+]]></content>
+      <categories>
+        <category>Kali</category>
+      </categories>
+      <tags>
+        <tag>JohnTheRipper</tag>
       </tags>
   </entry>
   <entry>
@@ -343,29 +366,6 @@
         <tag>vim</tag>
         <tag>ide</tag>
         <tag>editor</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>追加内容 JohnTheRipper的windows版下载及使用</title>
-    <url>/article/6063.html</url>
-    <content><![CDATA[<p>有的人可能没有kali，今天补一篇教大家用windows下载john破解zip</p>
-<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
-<li>Windows</li>
-<li>JohnTheRipper的其他系统版本</li>
-<li>一个待破解的zip包</li>
-</ul>
-<p>首先需要下载你系统对应的版本<br><a href="https://www.openwall.com/john/">John官网</a><br>你可以在这里找到对应版本，但是不要下载john，要下载john的jumbo版，这个版本貌似是社区开发，里面包含了许多破解其他密码的模块插件等<br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win64.zip">Win64</a><br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win32.zip">Win32</a><br>下载好后应该是一个zip包，解压他，把它放到你能找到的地方，这里建议<br><code>最好不要放在桌面</code><br>可以放在D:盘<br>解压他到一个文件夹，这个文件夹命名为<code>john</code></p>
-<h1 id="开始破解"><a href="#开始破解" class="headerlink" title="开始破解"></a>开始破解</h1><p>这里需要停一下，如果你没看过我写的那篇kali破解的教程，请务必去看一下，因为破解过程和kali没什么区别<br><a href="https://v1nnyawa.github.io/2022/12/13/John-The-Ripper-Crunch-%E7%A0%B4%E8%A7%A3zip%E5%AF%86%E7%A0%81/">Kali破解zip包教程</a><br>好的，在你看完那篇教程之后可以开始使用Windows破解了<br>把你待破解的<code>zip</code>包拖到john文件夹的<code>run</code>目录下，那里面有很多文件，所以在拖动前请给你的zip包起一个显眼的名字，如果你能找到，不起也可以<br>右键打开终端<br>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip2john.exe 你的zip包名 &gt; 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
-<p>这里你会发现，其实和kali没啥区别，只是在zip2john后加上<code>.exe</code>而已<br>执行后会在<code>run</code>目录生成一个和你输入的解析后的hash文件名同名的文件，那就是存储该zip包hash值的文件<br>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">john.exe 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
-<p>等待一会，密码应该可以出来（弱密码的情况下）<br>密码强一点的同理，和在kali一样，需要一个强大的字典，你也可以通过安装<code>crunch</code>来达到生成字典的目的，引用字典的方法和kali也一样，这里不过多赘述</p>
-]]></content>
-      <categories>
-        <category>Kali</category>
-      </categories>
-      <tags>
-        <tag>JohnTheRipper</tag>
       </tags>
   </entry>
 </search>
