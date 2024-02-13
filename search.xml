@@ -128,6 +128,36 @@
       </tags>
   </entry>
   <entry>
+    <title>WindowsApps权限出错的修复记录</title>
+    <url>/article/89fcca78.html</url>
+    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>我认为Linux下的<code>Ctrl</code>+<code>Alt</code>+<code>T</code>打开终端这个设计非常的好，非常的人性化，反观Windows（<br>有点那啥了<br>于是我就想给我的Win<del>祖宗</del>设置一个同款快捷键<br>在win上我喜欢用<strong>Windows Terminal</strong>这个工具搭配<strong>Git Bash</strong><br>至于为啥用<strong>Git Bash</strong>，谁叫人家自带<strong>Nano</strong>，<strong>Vim</strong>等好用的工具呢~<br><strong>Windows Terminal</strong>在win11里变成了系统自带的工具，甚至被设置成了默认的，不过它的安装来源却是<strong>Microsoft Store</strong>，就比较该死（<br>因为这里面安装的软件，除非你自定义了安装路径，否则他们都会被安装在C盘下的一个<strong>WindowsApps</strong>目录里，最该死的事发生了，这个破目录权限出奇的高，就是说不改权限就甭想访问它，但是如果手贱改了权限，改成了<code>Everyone</code>，那就会像我一样，<code>Win</code>+<code>R</code>后输入<code>wt</code>就再也打不开终端了 T~T</p>
+<p>我试着把权限改回原来的那一长串，但是根本不管用<br>不过！！不过！！！我找到了方法，记录下~嘿嘿ヾ(≧▽≦*)o</p>
+<blockquote>
+<p>感谢你听我说了这么多废话</p>
+</blockquote>
+<h1 id="修复过程"><a href="#修复过程" class="headerlink" title="修复过程"></a>修复过程</h1><p>别的方法都不用试了，直接打开注册表<br>定位到</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\wt.exe</span><br></pre></td></tr></table></figure>
+<p>看见右边那两个东西了么，就是它俩导致你Wt命令不管用的！！<br>双击<code>默认</code>两字<br>把数值数据改成</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Users\你的用户名\AppData\Local\Microsoft\WindowsApps\wt.exe</span><br></pre></td></tr></table></figure>
+<p>如果你不知道你的用户名<br>那么打开cmd，输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">whoami</span><br></pre></td></tr></table></figure>
+<p>显示的就是用户名了<br>更改好<code>默认</code>项后，来更改<code>Path</code><br>同样的方法，改为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Users\你的用户名\AppData\Local\Microsoft\WindowsApps</span><br></pre></td></tr></table></figure>
+
+<h1 id="完事儿收工"><a href="#完事儿收工" class="headerlink" title="完事儿收工~~"></a>完事儿收工~~</h1><blockquote>
+<p>衷心提示：别惯着Windows！！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>WindowsApps</tag>
+        <tag>修复</tag>
+        <tag>权限</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Raspberry Pi Pico 制作 BADusb</title>
     <url>/article/50956.html</url>
     <content><![CDATA[<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
@@ -153,28 +183,38 @@
       </tags>
   </entry>
   <entry>
-    <title>树莓派4B--xrdp远程连接黑屏解决方案</title>
-    <url>/article/5776.html</url>
-    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>今天我的树莓派4B维修回来了，想赶紧装上系统试一试<br>安装完成后使用xrdp连接，可是会黑屏，以为是分辨率的问题，又上网搜了一堆东西，都没能解决，最终一顿折腾，找到了完美的解决方案，记录一下</p>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><p>执行以下命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gpasswd -d v1nn0 video</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gpasswd -d v1nn0 render</span><br></pre></td></tr></table></figure>
-<p>注意了，执行时请把<code>v1nn0</code>替换成你的用户名！</p>
-<h2 id="系统设置"><a href="#系统设置" class="headerlink" title="系统设置"></a>系统设置</h2><p>直接输入命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
-<p>按照下图选择（使用键盘的小方向键选择）<br>System options<br><img src="/imgs/xrdphp-1.jpg" alt="1"><br>Boot &#x2F; Auto Login<br><img src="/imgs/xrdphp-2.jpg" alt="2"><br>Desktop GUI , requiring user to login<br><img src="/imgs/xrdphp-3.jpg" alt="3"></p>
-<p>最后直接<code>Finish</code></p>
-<p>确定重启树莓派即可！</p>
+    <title>古老的聊天工具-IRC聊天室 使用教程</title>
+    <url>/article/43469.html</url>
+    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>在很久以前读凯文米特尼克的《反入侵的艺术》时，了解到了IRC这个东东，觉得很有意思，就想赶紧去试一试<br>奈何当时年少，有些东西不太能理解，看了许多教程都没学会<br>不久前，又想重新试试，成功了，在这里分享下过程</p>
+<h1 id="下载一个好用的IRC客户端"><a href="#下载一个好用的IRC客户端" class="headerlink" title="下载一个好用的IRC客户端"></a>下载一个好用的IRC客户端</h1><p>手机端的推荐<br><code>IRCCloud</code>，谷歌商店里有<br>电脑端的推荐<br><code>Mozilla Thunderbird</code><br><a href="https://www.thunderbird.net/zh-CN/">Thunderbird下载</a><br>如果你想用hexirc也没有问题，原理都一样</p>
+<h1 id="魔法"><a href="#魔法" class="headerlink" title="魔法"></a>魔法</h1><p>是的，你需要一个魔法，不过只用一下下就行，完成这步后就可以把魔法扔掉了</p>
+<h1 id="激活Libera账号"><a href="#激活Libera账号" class="headerlink" title="激活Libera账号"></a>激活Libera账号</h1><p>打开魔法<br>访问<a href="https://libera.chat/">Libera官网</a><br>点击右上角的<code>Connect</code>并选择<code>Webchat</code><br>就会跳转到<a href="https://web.libera.chat/">这里</a>，当然你可以直接点击这个这里，跳转去激活<br>进入后<br>输入一个昵称，随便输<br>然后频道写</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">#linuxba</span><br></pre></td></tr></table></figure>
+<p>这是Linux吧的irc频道，你也可以选择别的，随便输入即可，只是为了激活<br>点击<code>开始</code><br>进入后，输入</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/nick 你的用户名</span><br></pre></td></tr></table></figure>
+<p>然后输入</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/msg NickServ REGISTER 你的账号密码 你的邮箱</span><br></pre></td></tr></table></figure>
+<p>回车后应该左侧会打开一个新的聊天<br>进入<br>这时查看你刚才写的邮箱收件箱，会有一个验证命令发过来<br>复制那个验证命令<br>在这个新的聊天中输入，回车，激活成功！</p>
+<h1 id="使用Thunderbird登录账号"><a href="#使用Thunderbird登录账号" class="headerlink" title="使用Thunderbird登录账号"></a>使用Thunderbird登录账号</h1><p>打开Thunderbird，选择<code>聊天</code>，选择<code>入门</code>，填写你的用户名，昵称，密码等等，确定即可<br>等待连接完成就成功了</p>
+<h1 id="隐藏IP"><a href="#隐藏IP" class="headerlink" title="隐藏IP"></a>隐藏IP</h1><p>血的教训啊！！我刚刚使用时没隐藏ip，频道里的一多半外国人都知道我来自中国了，甚至知道我来自哪个省份！<br>不过他们很热情，很贴心，教我怎么隐藏<br>所以啊，一定要cloak了<br>在<code>Thunderbird</code>里点击加入频道<br>在频道一栏写</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">#libera-cloak</span><br></pre></td></tr></table></figure>
+<p>进入频道，输入</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">!cloakme</span><br></pre></td></tr></table></figure>
+<p>他会把你踢出频道，这就成功了，隐藏成功</p>
+<p>另外说一下，那几个外国人怎么查到我ip的<br>其实这些默认都是公开的<br>在频道中输入</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/whois 你要查的用户名</span><br></pre></td></tr></table></figure>
+<p>即可查到那个用户的ip，不过大多数人都开了cloak，查不到</p>
 ]]></content>
       <categories>
-        <category>树莓派</category>
+        <category>其他</category>
       </categories>
       <tags>
-        <tag>xrdp</tag>
-        <tag>树莓派4B</tag>
-        <tag>问题解决</tag>
-        <tag>黑屏</tag>
-        <tag>BUG</tag>
+        <tag>IRC</tag>
+        <tag>Thunderbird</tag>
+        <tag>chatroom</tag>
+        <tag>internet</tag>
+        <tag>irc聊天室</tag>
+        <tag>频道</tag>
       </tags>
   </entry>
   <entry>
@@ -203,6 +243,31 @@
       <tags>
         <tag>youtube-dl</tag>
         <tag>termux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派4B--xrdp远程连接黑屏解决方案</title>
+    <url>/article/5776.html</url>
+    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>今天我的树莓派4B维修回来了，想赶紧装上系统试一试<br>安装完成后使用xrdp连接，可是会黑屏，以为是分辨率的问题，又上网搜了一堆东西，都没能解决，最终一顿折腾，找到了完美的解决方案，记录一下</p>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><p>执行以下命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gpasswd -d v1nn0 video</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gpasswd -d v1nn0 render</span><br></pre></td></tr></table></figure>
+<p>注意了，执行时请把<code>v1nn0</code>替换成你的用户名！</p>
+<h2 id="系统设置"><a href="#系统设置" class="headerlink" title="系统设置"></a>系统设置</h2><p>直接输入命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
+<p>按照下图选择（使用键盘的小方向键选择）<br>System options<br><img src="/imgs/xrdphp-1.jpg" alt="1"><br>Boot &#x2F; Auto Login<br><img src="/imgs/xrdphp-2.jpg" alt="2"><br>Desktop GUI , requiring user to login<br><img src="/imgs/xrdphp-3.jpg" alt="3"></p>
+<p>最后直接<code>Finish</code></p>
+<p>确定重启树莓派即可！</p>
+]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>xrdp</tag>
+        <tag>树莓派4B</tag>
+        <tag>问题解决</tag>
+        <tag>黑屏</tag>
+        <tag>BUG</tag>
       </tags>
   </entry>
   <entry>
@@ -308,41 +373,6 @@
         <tag>vim</tag>
         <tag>ide</tag>
         <tag>editor</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>古老的聊天工具-IRC聊天室 使用教程</title>
-    <url>/article/43469.html</url>
-    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>在很久以前读凯文米特尼克的《反入侵的艺术》时，了解到了IRC这个东东，觉得很有意思，就想赶紧去试一试<br>奈何当时年少，有些东西不太能理解，看了许多教程都没学会<br>不久前，又想重新试试，成功了，在这里分享下过程</p>
-<h1 id="下载一个好用的IRC客户端"><a href="#下载一个好用的IRC客户端" class="headerlink" title="下载一个好用的IRC客户端"></a>下载一个好用的IRC客户端</h1><p>手机端的推荐<br><code>IRCCloud</code>，谷歌商店里有<br>电脑端的推荐<br><code>Mozilla Thunderbird</code><br><a href="https://www.thunderbird.net/zh-CN/">Thunderbird下载</a><br>如果你想用hexirc也没有问题，原理都一样</p>
-<h1 id="魔法"><a href="#魔法" class="headerlink" title="魔法"></a>魔法</h1><p>是的，你需要一个魔法，不过只用一下下就行，完成这步后就可以把魔法扔掉了</p>
-<h1 id="激活Libera账号"><a href="#激活Libera账号" class="headerlink" title="激活Libera账号"></a>激活Libera账号</h1><p>打开魔法<br>访问<a href="https://libera.chat/">Libera官网</a><br>点击右上角的<code>Connect</code>并选择<code>Webchat</code><br>就会跳转到<a href="https://web.libera.chat/">这里</a>，当然你可以直接点击这个这里，跳转去激活<br>进入后<br>输入一个昵称，随便输<br>然后频道写</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">#linuxba</span><br></pre></td></tr></table></figure>
-<p>这是Linux吧的irc频道，你也可以选择别的，随便输入即可，只是为了激活<br>点击<code>开始</code><br>进入后，输入</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/nick 你的用户名</span><br></pre></td></tr></table></figure>
-<p>然后输入</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/msg NickServ REGISTER 你的账号密码 你的邮箱</span><br></pre></td></tr></table></figure>
-<p>回车后应该左侧会打开一个新的聊天<br>进入<br>这时查看你刚才写的邮箱收件箱，会有一个验证命令发过来<br>复制那个验证命令<br>在这个新的聊天中输入，回车，激活成功！</p>
-<h1 id="使用Thunderbird登录账号"><a href="#使用Thunderbird登录账号" class="headerlink" title="使用Thunderbird登录账号"></a>使用Thunderbird登录账号</h1><p>打开Thunderbird，选择<code>聊天</code>，选择<code>入门</code>，填写你的用户名，昵称，密码等等，确定即可<br>等待连接完成就成功了</p>
-<h1 id="隐藏IP"><a href="#隐藏IP" class="headerlink" title="隐藏IP"></a>隐藏IP</h1><p>血的教训啊！！我刚刚使用时没隐藏ip，频道里的一多半外国人都知道我来自中国了，甚至知道我来自哪个省份！<br>不过他们很热情，很贴心，教我怎么隐藏<br>所以啊，一定要cloak了<br>在<code>Thunderbird</code>里点击加入频道<br>在频道一栏写</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">#libera-cloak</span><br></pre></td></tr></table></figure>
-<p>进入频道，输入</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">!cloakme</span><br></pre></td></tr></table></figure>
-<p>他会把你踢出频道，这就成功了，隐藏成功</p>
-<p>另外说一下，那几个外国人怎么查到我ip的<br>其实这些默认都是公开的<br>在频道中输入</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/whois 你要查的用户名</span><br></pre></td></tr></table></figure>
-<p>即可查到那个用户的ip，不过大多数人都开了cloak，查不到</p>
-]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>IRC</tag>
-        <tag>Thunderbird</tag>
-        <tag>chatroom</tag>
-        <tag>internet</tag>
-        <tag>irc聊天室</tag>
-        <tag>频道</tag>
       </tags>
   </entry>
   <entry>

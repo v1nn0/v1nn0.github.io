@@ -22,18 +22,22 @@
     var CONFIG = {"hostname":"v1nn0.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="v1nn0&#39;s Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="v1nn0">
-<meta property="og:url" content="https://v1nn0.github.io/tags/editor/index.html">
+  <meta name="description" content="改权限导致wt命令无效，记录一次修复权限错误的过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WindowsApps权限出错的修复记录">
+<meta property="og:url" content="https://v1nn0.github.io/article/89fcca78.html">
 <meta property="og:site_name" content="v1nn0">
-<meta property="og:description" content="v1nn0&#39;s Blog">
+<meta property="og:description" content="改权限导致wt命令无效，记录一次修复权限错误的过程">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-11T07:46:13.000Z">
+<meta property="article:modified_time" content="2024-02-13T08:15:27.080Z">
 <meta property="article:author" content="v1nn0">
-<meta property="article:tag" content="v1nn0">
+<meta property="article:tag" content="WindowsApps">
+<meta property="article:tag" content="修复">
+<meta property="article:tag" content="权限">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://v1nn0.github.io/tags/editor/">
+<link rel="canonical" href="https://v1nn0.github.io/article/89fcca78.html">
 
 
 <script id="page-configurations">
@@ -41,12 +45,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: editor | v1nn0</title>
+  <title>WindowsApps权限出错的修复记录 | v1nn0</title>
   
 
 
@@ -187,51 +191,131 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">editor
-          <small>标签</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://v1nn0.github.io/article/89fcca78.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="v1nn0">
+      <meta itemprop="description" content="v1nn0's Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="v1nn0">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          WindowsApps权限出错的修复记录
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-02-11 15:46:13" itemprop="dateCreated datePublished" datetime="2024-02-11T15:46:13+08:00">2024-02-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-02-13 16:15:27" itemprop="dateModified" datetime="2024-02-13T16:15:27+08:00">2024-02-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">改权限导致wt命令无效，记录一次修复权限错误的过程</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+        <h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>我认为Linux下的<code>Ctrl</code>+<code>Alt</code>+<code>T</code>打开终端这个设计非常的好，非常的人性化，反观Windows（<br>有点那啥了<br>于是我就想给我的Win<del>祖宗</del>设置一个同款快捷键<br>在win上我喜欢用<strong>Windows Terminal</strong>这个工具搭配<strong>Git Bash</strong><br>至于为啥用<strong>Git Bash</strong>，谁叫人家自带<strong>Nano</strong>，<strong>Vim</strong>等好用的工具呢~<br><strong>Windows Terminal</strong>在win11里变成了系统自带的工具，甚至被设置成了默认的，不过它的安装来源却是<strong>Microsoft Store</strong>，就比较该死（<br>因为这里面安装的软件，除非你自定义了安装路径，否则他们都会被安装在C盘下的一个<strong>WindowsApps</strong>目录里，最该死的事发生了，这个破目录权限出奇的高，就是说不改权限就甭想访问它，但是如果手贱改了权限，改成了<code>Everyone</code>，那就会像我一样，<code>Win</code>+<code>R</code>后输入<code>wt</code>就再也打不开终端了 T~T</p>
+<p>我试着把权限改回原来的那一长串，但是根本不管用<br>不过！！不过！！！我找到了方法，记录下~嘿嘿ヾ(≧▽≦*)o</p>
+<blockquote>
+<p>感谢你听我说了这么多废话</p>
+</blockquote>
+<h1 id="修复过程"><a href="#修复过程" class="headerlink" title="修复过程"></a>修复过程</h1><p>别的方法都不用试了，直接打开注册表<br>定位到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\wt.exe</span><br></pre></td></tr></table></figure>
+<p>看见右边那两个东西了么，就是它俩导致你Wt命令不管用的！！<br>双击<code>默认</code>两字<br>把数值数据改成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\你的用户名\AppData\Local\Microsoft\WindowsApps\wt.exe</span><br></pre></td></tr></table></figure>
+<p>如果你不知道你的用户名<br>那么打开cmd，输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whoami</span><br></pre></td></tr></table></figure>
+<p>显示的就是用户名了<br>更改好<code>默认</code>项后，来更改<code>Path</code><br>同样的方法，改为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\你的用户名\AppData\Local\Microsoft\WindowsApps</span><br></pre></td></tr></table></figure>
+
+<h1 id="完事儿收工"><a href="#完事儿收工" class="headerlink" title="完事儿收工~~"></a>完事儿收工~~</h1><blockquote>
+<p>衷心提示：别惯着Windows！！</p>
+</blockquote>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
+        
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-08-07T12:02:45+08:00"
-              content="2023-08-07">
-          08-07
-        </time>
-      </div>
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>v1nn0
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://v1nn0.github.io/article/89fcca78.html" title="WindowsApps权限出错的修复记录">https://v1nn0.github.io/article/89fcca78.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/article/47438.html" itemprop="url">
-            <span itemprop="name">终端IDE？WSlUbuntu&Lunarvim！</span>
-          </a>
-      </div>
 
-    </header>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/WindowsApps/" rel="tag"># WindowsApps</a>
+              <a href="/tags/%E4%BF%AE%E5%A4%8D/" rel="tag"># 修复</a>
+              <a href="/tags/%E6%9D%83%E9%99%90/" rel="tag"># 权限</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/article/43469.html" rel="prev" title="古老的聊天工具-IRC聊天室 使用教程">
+      <i class="fa fa-chevron-left"></i> 古老的聊天工具-IRC聊天室 使用教程
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
@@ -284,6 +368,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%B4%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">说在前面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8D%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">修复过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%8C%E4%BA%8B%E5%84%BF%E6%94%B6%E5%B7%A5"><span class="nav-number">3.</span> <span class="nav-text">完事儿收工~~</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
