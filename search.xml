@@ -82,6 +82,31 @@
       </tags>
   </entry>
   <entry>
+    <title>Raspberry Pi Pico 制作 BADusb</title>
+    <url>/article/50956.html</url>
+    <content><![CDATA[<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
+<li>Raspberry Pi Pico （真的很便宜，帮焊接引脚的30r左右，不带引脚的20r左右）</li>
+<li>一台电脑</li>
+<li>数据线 （一定是要可以插进Pico板的线）</li>
+</ul>
+<h1 id="烧录CircuitPython"><a href="#烧录CircuitPython" class="headerlink" title="烧录CircuitPython"></a>烧录CircuitPython</h1><p>下载CircuitPython<br><a href="https://downloads.circuitpython.org/bin/raspberry_pi_pico/en_US/adafruit-circuitpython-raspberry_pi_pico-en_US-7.3.3.uf2">CircuitPython</a><br>下载好后，按住pico板上的<code>BOOTSEL</code>按钮，一定要按住，按住的同时把pico用数据线和电脑连接，电脑没有识别到他之前都不要松手！<br>不出意外，你的电脑应该会把它识别为一个大容量存储设备<br>打开它，并把刚才下载的CircuitPython文件(是uf2后缀)的文件拖入到pico的文件夹里，这时pico会自动重启，表现为窗口突然关闭，等待一会，文件夹窗口又出现，里面多出几个文件，说明烧录成功</p>
+<h1 id="为Pico安装HID库"><a href="#为Pico安装HID库" class="headerlink" title="为Pico安装HID库"></a>为Pico安装HID库</h1><p>其实，这个Pico BADusb的原理就是利用HID，模拟人的键鼠输入来达到做某些事的目的，也就是说，任何你可以用键盘鼠标完成的事，他都可以干，只不过是合不合法的问题<br>下载HID库<br><a href="https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases/download/20221214/adafruit-circuitpython-bundle-7.x-mpy-20221214.zip">HID库</a><br>下载好后解压，打开里面的<code>lib</code>目录找到<code>adafruit_hid</code>、<code>adafruit_debouncer.mpy</code>、<code>adafruit_ticks.mpy</code>和<code>asyncio</code>这四个东西，你不需要知道他们是什么，只需要把它们复制或剪切到pico的<code>lib</code>目录下，好的，完成了吗？</p>
+<h1 id="为Pico导入执行Python文件"><a href="#为Pico导入执行Python文件" class="headerlink" title="为Pico导入执行Python文件"></a>为Pico导入执行Python文件</h1><p>下载文件包<br><a href="https://github.com/dbisu/pico-ducky/archive/refs/heads/main.zip">文件包</a><br>解压他，并把里面的<code>duckyinpython.py</code>拖到pico的文件夹下，就是pico的根目录，拖动好后删除原来的<code>code.py</code>并把<code>duckyinpython.py</code>改名为<code>code.py</code><br>好的，现在你只差最后一步就可以完工了</p>
+<h1 id="写入待执行文件"><a href="#写入待执行文件" class="headerlink" title="写入待执行文件"></a>写入待执行文件</h1><p>打开任何编辑器开始编辑你的待执行文件吧，在编写好后意味着，一旦插入这个pico，他将执行那里面的所有代码<br>在编写前，先了解几个简单的语法<br><code>DELAY 毫秒</code> 延迟时间，可以用在两个命令的中间，后面的毫秒就是他要延迟的时间<br><code>GUI r</code> 相当于快捷键<code>Win</code>+<code>R</code><br><code>STRING 文本</code> 输入的文本，后面跟的字就是他会模拟键盘输入输入那些字符<br><code>ENTER</code> 按下回车键<br><code>CTRL</code> 按下CTRL键<br><code>字母</code> 按下某个字母（你指定）<br>这些是比较基础的<br>如果是ctrl组合的快捷键，那么就是<br><code>CTRL 快捷键的第二个键</code><br>这里面的关键字字符全部是大写<br>一行写一个<br>写好后保存名为<code>payload.dd</code><br>这里分享我写的一个简单的rickroll恶搞，具体就是运行cmd打开b站的网址</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELAY 20</span><br><span class="line">CTRL ESC</span><br><span class="line">DELAY 250</span><br><span class="line">STRING cmd</span><br><span class="line">DELAY 250</span><br><span class="line">ENTER</span><br><span class="line">ENTER</span><br><span class="line">DELAY 1500</span><br><span class="line">STRING start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">ENTER</span><br></pre></td></tr></table></figure>
+<p>翻译</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">等待20毫秒</span><br><span class="line">按下CTRL + ESC调出搜索窗口</span><br><span class="line">等待250毫秒</span><br><span class="line">输入 cmd</span><br><span class="line">回车</span><br><span class="line">回车</span><br><span class="line">等待1500毫秒</span><br><span class="line">输入 start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">回车</span><br></pre></td></tr></table></figure>
+<p>你也可以试试<br>保存为<code>payload.dd</code>后把它拖入pico的根目录，这时！！！这时你记住！！一定在拖进去并且确认他已经在里面的一瞬间，拔掉你的pico！！！以免他提前运行<br>好了<br>现在你的BADusb就制作完成了，把他连接到你的电脑试试吧！</p>
+<h1 id="把pico恢复原样或者进行脚本编辑"><a href="#把pico恢复原样或者进行脚本编辑" class="headerlink" title="把pico恢复原样或者进行脚本编辑"></a>把pico恢复原样或者进行脚本编辑</h1><p>你肯定想过，一旦插上他就会以我也不知道多少的输入速度执行里面的命令！！！如果你写的脚本相当狠的话，那就寄了（<br>那么怎么重新编辑里面的脚本或者怎么恢复原样呢？<br>很简单<br>把他拔下来，按住<code>BOOTSEL</code>键再连接回去，和这篇文章开头的过程一样，这时，下载这个文件<br><a href="https://cdn-learn.adafruit.com/assets/assets/000/099/419/original/flash_nuke.uf2?1613329170">恢复文件</a><br>下载好后，把他拖进pico根目录，它就会自动重启，恢复完成！</p>
+]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>BADUSB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>John The Ripper &amp;&amp; Crunch 破解zip密码</title>
     <url>/article/59491.html</url>
     <content><![CDATA[<p>相信大家一定遇到过好不容易下载到的非常棒的项目源码等资源，想立刻部署来玩一玩，可是源码需要密码才能解压的这种情况，今天说说怎么破解它<br>纯文字教程</p>
@@ -125,31 +150,6 @@
       </categories>
       <tags>
         <tag>JohnTheRipper</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Raspberry Pi Pico 制作 BADusb</title>
-    <url>/article/50956.html</url>
-    <content><![CDATA[<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
-<li>Raspberry Pi Pico （真的很便宜，帮焊接引脚的30r左右，不带引脚的20r左右）</li>
-<li>一台电脑</li>
-<li>数据线 （一定是要可以插进Pico板的线）</li>
-</ul>
-<h1 id="烧录CircuitPython"><a href="#烧录CircuitPython" class="headerlink" title="烧录CircuitPython"></a>烧录CircuitPython</h1><p>下载CircuitPython<br><a href="https://downloads.circuitpython.org/bin/raspberry_pi_pico/en_US/adafruit-circuitpython-raspberry_pi_pico-en_US-7.3.3.uf2">CircuitPython</a><br>下载好后，按住pico板上的<code>BOOTSEL</code>按钮，一定要按住，按住的同时把pico用数据线和电脑连接，电脑没有识别到他之前都不要松手！<br>不出意外，你的电脑应该会把它识别为一个大容量存储设备<br>打开它，并把刚才下载的CircuitPython文件(是uf2后缀)的文件拖入到pico的文件夹里，这时pico会自动重启，表现为窗口突然关闭，等待一会，文件夹窗口又出现，里面多出几个文件，说明烧录成功</p>
-<h1 id="为Pico安装HID库"><a href="#为Pico安装HID库" class="headerlink" title="为Pico安装HID库"></a>为Pico安装HID库</h1><p>其实，这个Pico BADusb的原理就是利用HID，模拟人的键鼠输入来达到做某些事的目的，也就是说，任何你可以用键盘鼠标完成的事，他都可以干，只不过是合不合法的问题<br>下载HID库<br><a href="https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases/download/20221214/adafruit-circuitpython-bundle-7.x-mpy-20221214.zip">HID库</a><br>下载好后解压，打开里面的<code>lib</code>目录找到<code>adafruit_hid</code>、<code>adafruit_debouncer.mpy</code>、<code>adafruit_ticks.mpy</code>和<code>asyncio</code>这四个东西，你不需要知道他们是什么，只需要把它们复制或剪切到pico的<code>lib</code>目录下，好的，完成了吗？</p>
-<h1 id="为Pico导入执行Python文件"><a href="#为Pico导入执行Python文件" class="headerlink" title="为Pico导入执行Python文件"></a>为Pico导入执行Python文件</h1><p>下载文件包<br><a href="https://github.com/dbisu/pico-ducky/archive/refs/heads/main.zip">文件包</a><br>解压他，并把里面的<code>duckyinpython.py</code>拖到pico的文件夹下，就是pico的根目录，拖动好后删除原来的<code>code.py</code>并把<code>duckyinpython.py</code>改名为<code>code.py</code><br>好的，现在你只差最后一步就可以完工了</p>
-<h1 id="写入待执行文件"><a href="#写入待执行文件" class="headerlink" title="写入待执行文件"></a>写入待执行文件</h1><p>打开任何编辑器开始编辑你的待执行文件吧，在编写好后意味着，一旦插入这个pico，他将执行那里面的所有代码<br>在编写前，先了解几个简单的语法<br><code>DELAY 毫秒</code> 延迟时间，可以用在两个命令的中间，后面的毫秒就是他要延迟的时间<br><code>GUI r</code> 相当于快捷键<code>Win</code>+<code>R</code><br><code>STRING 文本</code> 输入的文本，后面跟的字就是他会模拟键盘输入输入那些字符<br><code>ENTER</code> 按下回车键<br><code>CTRL</code> 按下CTRL键<br><code>字母</code> 按下某个字母（你指定）<br>这些是比较基础的<br>如果是ctrl组合的快捷键，那么就是<br><code>CTRL 快捷键的第二个键</code><br>这里面的关键字字符全部是大写<br>一行写一个<br>写好后保存名为<code>payload.dd</code><br>这里分享我写的一个简单的rickroll恶搞，具体就是运行cmd打开b站的网址</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELAY 20</span><br><span class="line">CTRL ESC</span><br><span class="line">DELAY 250</span><br><span class="line">STRING cmd</span><br><span class="line">DELAY 250</span><br><span class="line">ENTER</span><br><span class="line">ENTER</span><br><span class="line">DELAY 1500</span><br><span class="line">STRING start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">ENTER</span><br></pre></td></tr></table></figure>
-<p>翻译</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">等待20毫秒</span><br><span class="line">按下CTRL + ESC调出搜索窗口</span><br><span class="line">等待250毫秒</span><br><span class="line">输入 cmd</span><br><span class="line">回车</span><br><span class="line">回车</span><br><span class="line">等待1500毫秒</span><br><span class="line">输入 start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">回车</span><br></pre></td></tr></table></figure>
-<p>你也可以试试<br>保存为<code>payload.dd</code>后把它拖入pico的根目录，这时！！！这时你记住！！一定在拖进去并且确认他已经在里面的一瞬间，拔掉你的pico！！！以免他提前运行<br>好了<br>现在你的BADusb就制作完成了，把他连接到你的电脑试试吧！</p>
-<h1 id="把pico恢复原样或者进行脚本编辑"><a href="#把pico恢复原样或者进行脚本编辑" class="headerlink" title="把pico恢复原样或者进行脚本编辑"></a>把pico恢复原样或者进行脚本编辑</h1><p>你肯定想过，一旦插上他就会以我也不知道多少的输入速度执行里面的命令！！！如果你写的脚本相当狠的话，那就寄了（<br>那么怎么重新编辑里面的脚本或者怎么恢复原样呢？<br>很简单<br>把他拔下来，按住<code>BOOTSEL</code>键再连接回去，和这篇文章开头的过程一样，这时，下载这个文件<br><a href="https://cdn-learn.adafruit.com/assets/assets/000/099/419/original/flash_nuke.uf2?1613329170">恢复文件</a><br>下载好后，把他拖进pico根目录，它就会自动重启，恢复完成！</p>
-]]></content>
-      <categories>
-        <category>树莓派</category>
-      </categories>
-      <tags>
-        <tag>BADUSB</tag>
       </tags>
   </entry>
   <entry>
