@@ -82,31 +82,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Raspberry Pi Pico 制作 BADusb</title>
-    <url>/article/50956.html</url>
-    <content><![CDATA[<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
-<li>Raspberry Pi Pico （真的很便宜，帮焊接引脚的30r左右，不带引脚的20r左右）</li>
-<li>一台电脑</li>
-<li>数据线 （一定是要可以插进Pico板的线）</li>
-</ul>
-<h1 id="烧录CircuitPython"><a href="#烧录CircuitPython" class="headerlink" title="烧录CircuitPython"></a>烧录CircuitPython</h1><p>下载CircuitPython<br><a href="https://downloads.circuitpython.org/bin/raspberry_pi_pico/en_US/adafruit-circuitpython-raspberry_pi_pico-en_US-7.3.3.uf2">CircuitPython</a><br>下载好后，按住pico板上的<code>BOOTSEL</code>按钮，一定要按住，按住的同时把pico用数据线和电脑连接，电脑没有识别到他之前都不要松手！<br>不出意外，你的电脑应该会把它识别为一个大容量存储设备<br>打开它，并把刚才下载的CircuitPython文件(是uf2后缀)的文件拖入到pico的文件夹里，这时pico会自动重启，表现为窗口突然关闭，等待一会，文件夹窗口又出现，里面多出几个文件，说明烧录成功</p>
-<h1 id="为Pico安装HID库"><a href="#为Pico安装HID库" class="headerlink" title="为Pico安装HID库"></a>为Pico安装HID库</h1><p>其实，这个Pico BADusb的原理就是利用HID，模拟人的键鼠输入来达到做某些事的目的，也就是说，任何你可以用键盘鼠标完成的事，他都可以干，只不过是合不合法的问题<br>下载HID库<br><a href="https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases/download/20221214/adafruit-circuitpython-bundle-7.x-mpy-20221214.zip">HID库</a><br>下载好后解压，打开里面的<code>lib</code>目录找到<code>adafruit_hid</code>、<code>adafruit_debouncer.mpy</code>、<code>adafruit_ticks.mpy</code>和<code>asyncio</code>这四个东西，你不需要知道他们是什么，只需要把它们复制或剪切到pico的<code>lib</code>目录下，好的，完成了吗？</p>
-<h1 id="为Pico导入执行Python文件"><a href="#为Pico导入执行Python文件" class="headerlink" title="为Pico导入执行Python文件"></a>为Pico导入执行Python文件</h1><p>下载文件包<br><a href="https://github.com/dbisu/pico-ducky/archive/refs/heads/main.zip">文件包</a><br>解压他，并把里面的<code>duckyinpython.py</code>拖到pico的文件夹下，就是pico的根目录，拖动好后删除原来的<code>code.py</code>并把<code>duckyinpython.py</code>改名为<code>code.py</code><br>好的，现在你只差最后一步就可以完工了</p>
-<h1 id="写入待执行文件"><a href="#写入待执行文件" class="headerlink" title="写入待执行文件"></a>写入待执行文件</h1><p>打开任何编辑器开始编辑你的待执行文件吧，在编写好后意味着，一旦插入这个pico，他将执行那里面的所有代码<br>在编写前，先了解几个简单的语法<br><code>DELAY 毫秒</code> 延迟时间，可以用在两个命令的中间，后面的毫秒就是他要延迟的时间<br><code>GUI r</code> 相当于快捷键<code>Win</code>+<code>R</code><br><code>STRING 文本</code> 输入的文本，后面跟的字就是他会模拟键盘输入输入那些字符<br><code>ENTER</code> 按下回车键<br><code>CTRL</code> 按下CTRL键<br><code>字母</code> 按下某个字母（你指定）<br>这些是比较基础的<br>如果是ctrl组合的快捷键，那么就是<br><code>CTRL 快捷键的第二个键</code><br>这里面的关键字字符全部是大写<br>一行写一个<br>写好后保存名为<code>payload.dd</code><br>这里分享我写的一个简单的rickroll恶搞，具体就是运行cmd打开b站的网址</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELAY 20</span><br><span class="line">CTRL ESC</span><br><span class="line">DELAY 250</span><br><span class="line">STRING cmd</span><br><span class="line">DELAY 250</span><br><span class="line">ENTER</span><br><span class="line">ENTER</span><br><span class="line">DELAY 1500</span><br><span class="line">STRING start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">ENTER</span><br></pre></td></tr></table></figure>
-<p>翻译</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">等待20毫秒</span><br><span class="line">按下CTRL + ESC调出搜索窗口</span><br><span class="line">等待250毫秒</span><br><span class="line">输入 cmd</span><br><span class="line">回车</span><br><span class="line">回车</span><br><span class="line">等待1500毫秒</span><br><span class="line">输入 start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">回车</span><br></pre></td></tr></table></figure>
-<p>你也可以试试<br>保存为<code>payload.dd</code>后把它拖入pico的根目录，这时！！！这时你记住！！一定在拖进去并且确认他已经在里面的一瞬间，拔掉你的pico！！！以免他提前运行<br>好了<br>现在你的BADusb就制作完成了，把他连接到你的电脑试试吧！</p>
-<h1 id="把pico恢复原样或者进行脚本编辑"><a href="#把pico恢复原样或者进行脚本编辑" class="headerlink" title="把pico恢复原样或者进行脚本编辑"></a>把pico恢复原样或者进行脚本编辑</h1><p>你肯定想过，一旦插上他就会以我也不知道多少的输入速度执行里面的命令！！！如果你写的脚本相当狠的话，那就寄了（<br>那么怎么重新编辑里面的脚本或者怎么恢复原样呢？<br>很简单<br>把他拔下来，按住<code>BOOTSEL</code>键再连接回去，和这篇文章开头的过程一样，这时，下载这个文件<br><a href="https://cdn-learn.adafruit.com/assets/assets/000/099/419/original/flash_nuke.uf2?1613329170">恢复文件</a><br>下载好后，把他拖进pico根目录，它就会自动重启，恢复完成！</p>
-]]></content>
-      <categories>
-        <category>树莓派</category>
-      </categories>
-      <tags>
-        <tag>BADUSB</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>John The Ripper &amp;&amp; Crunch 破解zip密码</title>
     <url>/article/59491.html</url>
     <content><![CDATA[<p>相信大家一定遇到过好不容易下载到的非常棒的项目源码等资源，想立刻部署来玩一玩，可是源码需要密码才能解压的这种情况，今天说说怎么破解它<br>纯文字教程</p>
@@ -153,6 +128,117 @@
       </tags>
   </entry>
   <entry>
+    <title>Windows下Nano编辑器的安装及使用</title>
+    <url>/article/ac915a67.html</url>
+    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>三年前，我在看一位外国大佬的教学视频时了解到了<strong>Nano</strong>这款编辑器<br><del>那个大佬真的很爱用这个东西（</del><br>当我第一次看到它的时候，就喜欢上了它<br><strong>Nano</strong>对于新手来说，没有初次打开的<strong>Vim</strong>那种恐惧感，相反，它给人一种清新简单且人性化的感觉，整个页面的设计很简单，上面是一个标题栏，下面是两行快捷键提示和一行简短的信息框<br><img src="/imgs/winnano-1.jpg" alt="1"><br>背景是我自己配置的，是直接配置的终端背景<br>这个行号显示也需要自己配置，不过相当的简单，配置全程只需要你按一下<strong>退格键</strong><br><strong>Nano</strong>的语法高亮也是十分的好用，它还内置了<strong>拼写检查</strong>，<strong>自动补全</strong>等功能，这些功能在vim上全部是需要自己配置，而在<strong>Nano</strong>里，它内置！</p>
+<blockquote>
+<p>感谢你听我说完这些废话</p>
+</blockquote>
+<h1 id="Win下的安装"><a href="#Win下的安装" class="headerlink" title="Win下的安装"></a>Win下的安装</h1><p>由于<strong>Nano</strong>原本是Linux下的软件，所以在Win中无法通过安装包的方式下载，不过<strong>Git Bash</strong>内置了<strong>Nano</strong>工具，完美的解决了这个问题<br><a href="https://git-scm.com/download">Windows Git下载</a><br>安装好后直接打开<strong>Git Bash</strong>输入Nano即可使用</p>
+<h1 id="简单配置"><a href="#简单配置" class="headerlink" title="简单配置"></a>简单配置</h1><p>刚刚我说过了，在<strong>Nano</strong>中，开启显示行号的功能甚至不用输入多余的东西，只需要一个<strong>退格键</strong><br>打开<strong>Git</strong>的安装目录中的<code>etc</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\Git\etc</span><br></pre></td></tr></table></figure>
+<p>你会发现里面有如下的内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ tree</span><br><span class="line">.</span><br><span class="line">|-- DIR_COLORS</span><br><span class="line">|-- bash.bash_logout</span><br><span class="line">|-- bash.bashrc</span><br><span class="line">|-- docx2txt.config</span><br><span class="line">|-- fstab</span><br><span class="line">|-- gitattributes</span><br><span class="line">|-- gitconfig</span><br><span class="line">|-- hosts</span><br><span class="line">|-- inputrc</span><br><span class="line">|-- install-options.txt</span><br><span class="line">|-- msystem</span><br><span class="line">|-- mtab</span><br><span class="line">|-- nanorc</span><br><span class="line">|-- networks</span><br><span class="line">|-- nsswitch.conf</span><br><span class="line">|-- package-versions.txt</span><br><span class="line">|-- pkcs11</span><br><span class="line">|   `-- pkcs11.conf.example</span><br><span class="line">|-- pki</span><br><span class="line">|   `-- ca-trust</span><br><span class="line">|       `-- extracted</span><br><span class="line">|           |-- java</span><br><span class="line">|           |   `-- cacerts</span><br><span class="line">|           |-- openssl</span><br><span class="line">|           |   `-- ca-bundle.trust.crt</span><br><span class="line">|           `-- pem</span><br><span class="line">|               |-- email-ca-bundle.pem</span><br><span class="line">|               |-- objsign-ca-bundle.pem</span><br><span class="line">|               `-- tls-ca-bundle.pem</span><br><span class="line">|-- profile</span><br><span class="line">|-- profile.d</span><br><span class="line">|   |-- aliases.sh</span><br><span class="line">|   |-- bash_profile.sh</span><br><span class="line">|   |-- env.sh</span><br><span class="line">|   |-- git-prompt.sh</span><br><span class="line">|   |-- lang.sh</span><br><span class="line">|   |-- perlbin.csh</span><br><span class="line">|   `-- perlbin.sh</span><br><span class="line">|-- protocols</span><br><span class="line">|-- services</span><br><span class="line">|-- ssh</span><br><span class="line">|   |-- moduli</span><br><span class="line">|   |-- ssh_config</span><br><span class="line">|   `-- sshd_config</span><br><span class="line">|-- tigrc</span><br><span class="line">`-- vimrc</span><br><span class="line"></span><br><span class="line">9 directories, 37 files</span><br></pre></td></tr></table></figure>
+<p>别的一律不用看，打开<code>nanorc</code><br>会有如下配置<br><a href="#%E5%BC%80%E5%90%AF%E8%A1%8C%E5%8F%B7%E6%98%BE%E7%A4%BA">点我直接跳转到操作步骤</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## Sample initialization file for GNU nano.</span><br><span class="line">##</span><br><span class="line">## For the options that take parameters, the default value is shown.</span><br><span class="line">## Other options are unset by default.  To make sure that an option</span><br><span class="line">## is disabled, you can use &quot;unset &lt;option&gt;&quot;.</span><br><span class="line">##</span><br><span class="line">## Characters that are special in a shell should not be escaped here.</span><br><span class="line">## Inside string parameters, quotes should not be escaped -- the last</span><br><span class="line">## double quote on the line will be seen as the closing quote.</span><br><span class="line"></span><br><span class="line">## Make &#x27;nextword&#x27; (Ctrl+Right) and &#x27;chopwordright&#x27; (Ctrl+Delete)</span><br><span class="line">## stop at word ends instead of at beginnings.</span><br><span class="line"># set afterends</span><br><span class="line"></span><br><span class="line">## When soft line wrapping is enabled, make it wrap lines at blanks</span><br><span class="line">## (tabs and spaces) instead of always at the edge of the screen.</span><br><span class="line"># set atblanks</span><br><span class="line"></span><br><span class="line">## Automatically indent a newly created line to the same number of</span><br><span class="line">## tabs and/or spaces as the preceding line -- or as the next line</span><br><span class="line">## if the preceding line is the beginning of a paragraph.</span><br><span class="line"># set autoindent</span><br><span class="line"></span><br><span class="line">## Back up files to the current filename plus a tilde.</span><br><span class="line"># set backup</span><br><span class="line"></span><br><span class="line">## The directory to put unique backup files in.</span><br><span class="line"># set backupdir &quot;&quot;</span><br><span class="line"></span><br><span class="line">## Use bold text instead of reverse video text.</span><br><span class="line"># set boldtext</span><br><span class="line"></span><br><span class="line">## Treat any line with leading whitespace as the beginning of a paragraph.</span><br><span class="line"># set bookstyle</span><br><span class="line"></span><br><span class="line">## The characters treated as closing brackets when justifying paragraphs.</span><br><span class="line">## This may not include any blank characters.  Only closing punctuation,</span><br><span class="line">## optionally followed by these closing brackets, can end sentences.</span><br><span class="line"># set brackets &quot;&quot;&#x27;)&gt;]&#125;&quot;</span><br><span class="line"></span><br><span class="line">## Automatically hard-wrap the current line when it becomes overlong.</span><br><span class="line"># set breaklonglines</span><br><span class="line"></span><br><span class="line">## Do case-sensitive searches by default.</span><br><span class="line"># set casesensitive</span><br><span class="line"></span><br><span class="line">## Constantly display the cursor position in the status bar or minibar.</span><br><span class="line"># set constantshow</span><br><span class="line"></span><br><span class="line">## Use cut-from-cursor-to-end-of-line by default.</span><br><span class="line"># set cutfromcursor</span><br><span class="line"></span><br><span class="line">## Do not use the line below the title bar, leaving it entirely blank.</span><br><span class="line"># set emptyline</span><br><span class="line"></span><br><span class="line">## Set the target width for automatic hard-wrapping and for justifying</span><br><span class="line">## paragraphs.  If the specified value is 0 or less, the wrapping point</span><br><span class="line">## will be the terminal&#x27;s width minus this number.</span><br><span class="line"># set fill -8</span><br><span class="line"></span><br><span class="line">## Draw a vertical stripe at the given column, to help judge text width.</span><br><span class="line">## (This option does not have a default value.)</span><br><span class="line"># set guidestripe 75</span><br><span class="line"></span><br><span class="line">## Remember the used search/replace strings for the next session.</span><br><span class="line"># set historylog</span><br><span class="line"></span><br><span class="line">## Display a &quot;scrollbar&quot; on the righthand side of the edit window.</span><br><span class="line"># set indicator</span><br><span class="line"></span><br><span class="line">## Scroll the buffer contents per half-screen instead of per line.</span><br><span class="line"># set jumpyscrolling</span><br><span class="line"></span><br><span class="line">## Display line numbers to the left (and any anchors in the margin).</span><br><span class="line">#set linenumbers</span><br><span class="line"></span><br><span class="line">## Enable vim-style lock-files.  This is just to let a vim user know you</span><br><span class="line">## are editing a file [s]he is trying to edit and vice versa.  There are</span><br><span class="line">## no plans to implement vim-style undo state in these files.</span><br><span class="line"># set locking</span><br><span class="line"></span><br><span class="line">## Fall back to slow libmagic to try and determine an applicable syntax.</span><br><span class="line"># set magic</span><br><span class="line"></span><br><span class="line">## The opening and closing brackets that are found by a matching-bracket</span><br><span class="line">## search.  This may not contain blank characters.  The opening brackets</span><br><span class="line">## must come before the closing ones, and they must be in the same order.</span><br><span class="line"># set matchbrackets &quot;(&lt;[&#123;)&gt;]&#125;&quot;</span><br><span class="line"></span><br><span class="line">## Suppress the title bar and show the filename plus a cursor-position</span><br><span class="line">## percentage in the space of the status bar.</span><br><span class="line"># set minibar</span><br><span class="line"></span><br><span class="line">## Enable mouse support, if available for your system.  When enabled,</span><br><span class="line">## mouse clicks can be used to place the cursor, set the mark (with a</span><br><span class="line">## double click), and execute shortcuts.  The mouse will work in the</span><br><span class="line">## X Window System, and on the console when gpm is running.</span><br><span class="line"># set mouse</span><br><span class="line"></span><br><span class="line">## Switch on multiple file buffers (inserting a file will put it into</span><br><span class="line">## a separate buffer).</span><br><span class="line"># set multibuffer</span><br><span class="line"></span><br><span class="line">## Don&#x27;t convert files from DOS/Mac format.</span><br><span class="line"># set noconvert</span><br><span class="line"></span><br><span class="line">## Don&#x27;t display the helpful shortcut lists at the bottom of the screen.</span><br><span class="line"># set nohelp</span><br><span class="line"></span><br><span class="line">## Don&#x27;t automatically add a newline when a file does not end with one.</span><br><span class="line"># set nonewlines</span><br><span class="line"></span><br><span class="line">## Set operating directory.  nano will not read or write files outside</span><br><span class="line">## this directory and its subdirectories.  Also, the current directory</span><br><span class="line">## is changed to here, so any files are inserted from this dir.  A blank</span><br><span class="line">## string means the operating-directory feature is turned off.</span><br><span class="line"># set operatingdir &quot;&quot;</span><br><span class="line"></span><br><span class="line">## Remember the cursor position in each file for the next editing session.</span><br><span class="line"># set positionlog</span><br><span class="line"></span><br><span class="line">## Preserve the XON and XOFF keys (^Q and ^S).</span><br><span class="line"># set preserve</span><br><span class="line"></span><br><span class="line">## The characters treated as closing punctuation when justifying paragraphs.</span><br><span class="line">## This may not contain blank characters.  Only these closing punctuations,</span><br><span class="line">## optionally followed by closing brackets, can end sentences.</span><br><span class="line"># set punct &quot;!.?&quot;</span><br><span class="line"></span><br><span class="line">## Make status-bar messages disappear after 1 keystroke instead of after 20.</span><br><span class="line"># set quickblank</span><br><span class="line"></span><br><span class="line">## The regular expression that matches quoting characters in email</span><br><span class="line">## or line-comment introducers in source code.  The default is:</span><br><span class="line"># set quotestr &quot;^([ 	]*([!#%:;&gt;|&#125;]|//))+&quot;</span><br><span class="line"></span><br><span class="line">## Try to work around a mismatching terminfo terminal description.</span><br><span class="line"># set rawsequences</span><br><span class="line"></span><br><span class="line">## Fix Backspace/Delete confusion problem.</span><br><span class="line"># set rebinddelete</span><br><span class="line"></span><br><span class="line">## Do regular-expression searches by default.</span><br><span class="line">## Regular expressions are of the extended type (ERE).</span><br><span class="line"># set regexp</span><br><span class="line"></span><br><span class="line">## Save a changed buffer automatically on exit; don&#x27;t prompt.</span><br><span class="line"># set saveonexit</span><br><span class="line"></span><br><span class="line">## Put the cursor on the highlighted item in the file browser, and</span><br><span class="line">## show the cursor in the help viewer; useful for people who use a</span><br><span class="line">## braille display and people with poor vision.</span><br><span class="line"># set showcursor</span><br><span class="line"></span><br><span class="line">## Make the Home key smarter: when Home is pressed anywhere but at the</span><br><span class="line">## very beginning of non-whitespace characters on a line, the cursor</span><br><span class="line">## will jump to that beginning (either forwards or backwards).  If the</span><br><span class="line">## cursor is already at that position, it will jump to the true start</span><br><span class="line">## of the line (the left edge).</span><br><span class="line"># set smarthome</span><br><span class="line"></span><br><span class="line">## Spread overlong lines over multiple screen lines.</span><br><span class="line"># set softwrap</span><br><span class="line"></span><br><span class="line">## Use this spelling checker instead of the internal one.  This option</span><br><span class="line">## does not have a default value.</span><br><span class="line"># set speller &quot;aspell -x -c&quot;</span><br><span class="line"></span><br><span class="line">## Use the end of the title bar for some state flags: I = auto-indenting,</span><br><span class="line">## M = mark, L = hard-wrapping long lines, R = recording, S = soft-wrapping.</span><br><span class="line"># set stateflags</span><br><span class="line"></span><br><span class="line">## Use this tab size instead of the default; it must be greater than 0.</span><br><span class="line"># set tabsize 8</span><br><span class="line"></span><br><span class="line">## Convert each typed tab to the fitting number of spaces.</span><br><span class="line"># set tabstospaces</span><br><span class="line"></span><br><span class="line">## Snip whitespace at the end of lines when justifying or hard-wrapping.</span><br><span class="line"># set trimblanks</span><br><span class="line"></span><br><span class="line">## Save files by default in Unix format (also when they were DOS or Mac).</span><br><span class="line"># set unix</span><br><span class="line"></span><br><span class="line">## The two single-column characters used to display the first characters</span><br><span class="line">## of tabs and spaces.  187 in ISO 8859-1 (0000BB in Unicode) and 183 in</span><br><span class="line">## ISO-8859-1 (0000B7 in Unicode) seem to be good values for these.</span><br><span class="line">## The default when in a UTF-8 locale:</span><br><span class="line"># set whitespace &quot;»·&quot;</span><br><span class="line">## The default otherwise:</span><br><span class="line"># set whitespace &quot;&gt;.&quot;</span><br><span class="line"></span><br><span class="line">## Detect word boundaries differently by treating punctuation</span><br><span class="line">## characters as parts of words.</span><br><span class="line"># set wordbounds</span><br><span class="line"></span><br><span class="line">## The characters (besides alphanumeric ones) that should be considered</span><br><span class="line">## as parts of words.  This option does not have a default value.  When</span><br><span class="line">## set, it overrides option &#x27;set wordbounds&#x27;.</span><br><span class="line"># set wordchars &quot;&lt;_&gt;.&quot;</span><br><span class="line"></span><br><span class="line">## Let an unmodified Backspace or Delete erase the marked region (instead</span><br><span class="line">## of a single character, and without affecting the cutbuffer).</span><br><span class="line"># set zap</span><br><span class="line"></span><br><span class="line">## Hide the bars plus help lines and use the whole terminal as edit area.</span><br><span class="line"># set zero</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## Paint the interface elements of nano.  These are examples; there are</span><br><span class="line">## no colors by default, except for errorcolor and spotlightcolor.</span><br><span class="line">set titlecolor bold,white,blue</span><br><span class="line">set promptcolor lightwhite,grey</span><br><span class="line">set statuscolor bold,white,green</span><br><span class="line">set errorcolor bold,white,red</span><br><span class="line">set spotlightcolor black,lightyellow</span><br><span class="line">set selectedcolor lightwhite,magenta</span><br><span class="line">set stripecolor ,yellow</span><br><span class="line">set scrollercolor cyan</span><br><span class="line">set numbercolor cyan</span><br><span class="line">set keycolor cyan</span><br><span class="line">set functioncolor green</span><br><span class="line"></span><br><span class="line">## In root&#x27;s .nanorc you might want to use:</span><br><span class="line"># set titlecolor bold,white,magenta</span><br><span class="line"># set promptcolor black,yellow</span><br><span class="line"># set statuscolor bold,white,magenta</span><br><span class="line"># set errorcolor bold,white,red</span><br><span class="line"># set spotlightcolor black,orange</span><br><span class="line"># set selectedcolor lightwhite,cyan</span><br><span class="line"># set stripecolor ,yellow</span><br><span class="line"># set scrollercolor magenta</span><br><span class="line"># set numbercolor magenta</span><br><span class="line"># set keycolor lightmagenta</span><br><span class="line"># set functioncolor magenta</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## === Syntax coloring ===</span><br><span class="line">## For all details, see &#x27;man nanorc&#x27;, section SYNTAX HIGHLIGHTING.</span><br><span class="line"></span><br><span class="line">## To include most of the existing syntax definitions, you can do:</span><br><span class="line">include &quot;/usr/share/nano/*.nanorc&quot;</span><br><span class="line"></span><br><span class="line">## Or you can select just the ones you need.  For example:</span><br><span class="line">include &quot;/usr/share/nano/html.nanorc&quot;</span><br><span class="line">include &quot;/usr/share/nano/python.nanorc&quot;</span><br><span class="line">include &quot;/usr/share/nano/sh.nanorc&quot;</span><br><span class="line"></span><br><span class="line">## In /usr/share/nano/extra/ you can find some syntaxes that are</span><br><span class="line">## specific for certain distros or for some less common languages.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## If &lt;Tab&gt; should always produce four spaces when editing a Python file,</span><br><span class="line">## independent of the settings of &#x27;tabsize&#x27; and &#x27;tabstospaces&#x27;:</span><br><span class="line"># extendsyntax python tabgives &quot;    &quot;</span><br><span class="line"></span><br><span class="line">## If &lt;Tab&gt; should always produce an actual TAB when editing a Makefile:</span><br><span class="line"># extendsyntax makefile tabgives &quot;	&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## === Key bindings ===</span><br><span class="line">## For all details, see &#x27;man nanorc&#x27;, section REBINDING KEYS.</span><br><span class="line"></span><br><span class="line">## If you want to suspend nano with one keystroke (instead of with ^T^Z):</span><br><span class="line"># bind ^Z suspend main</span><br><span class="line"></span><br><span class="line">## The &lt;Ctrl+Delete&gt; keystroke deletes the word to the right of the cursor.</span><br><span class="line">## On some terminals the &lt;Ctrl+Backspace&gt; keystroke produces ^H, which is</span><br><span class="line">## the ASCII character for backspace, so it is bound by default to the</span><br><span class="line">## backspace function.  The &lt;Backspace&gt; key itself produces a different</span><br><span class="line">## keycode, which is hard-bound to the backspace function.  So, if you</span><br><span class="line">## normally use &lt;Backspace&gt; for backspacing and not ^H, you can make</span><br><span class="line">## &lt;Ctrl+Backspace&gt; delete the word to the left of the cursor with:</span><br><span class="line"># bind ^H chopwordleft main</span><br><span class="line"></span><br><span class="line">## For a more mnemonic Comment keystroke (overriding Cut-from-cursor):</span><br><span class="line"># bind M-K comment main</span><br><span class="line"></span><br><span class="line">## If you want ^L to just refresh the screen and not center the cursor:</span><br><span class="line"># bind ^L refresh main</span><br><span class="line"></span><br><span class="line">## When you sometimes type M-J instead of M-K, or M-T instead of M-R:</span><br><span class="line"># unbind M-J main</span><br><span class="line"># unbind M-T main</span><br><span class="line">## (Those functions are still accessible through ^T^J and ^T^V.)</span><br><span class="line"></span><br><span class="line">## For quickly uppercasing or lowercasing the word under or after the cursor.</span><br><span class="line">## (These effectively select a word and pipe it through a sed command.)</span><br><span class="line">#bind Sh-M-U &quot;&#123;nextword&#125;&#123;mark&#125;&#123;prevword&#125;&#123;execute&#125;|sed &#x27;s/.*/\U&amp;/&#x27;&#123;enter&#125;&quot; main</span><br><span class="line">#bind Sh-M-L &quot;&#123;nextword&#125;&#123;mark&#125;&#123;prevword&#125;&#123;execute&#125;|sed &#x27;s/.*/\L&amp;/&#x27;&#123;enter&#125;&quot; main</span><br><span class="line"></span><br><span class="line">## For copying a marked region to the system clipboard:</span><br><span class="line"># bind Sh-M-T &quot;&#123;execute&#125;|xsel -ib&#123;enter&#125;&#123;undo&#125;&quot; main</span><br><span class="line"></span><br><span class="line">## For snipping trailing blanks when you save a file:</span><br><span class="line"># bind ^S &quot;&#123;execute&#125;| sed &#x27;s/\s\+$//&#x27; &#123;enter&#125;&#123;savefile&#125;&quot; main</span><br><span class="line"></span><br><span class="line">## If you would like nano to have keybindings that are more &quot;usual&quot;,</span><br><span class="line">## such as ^O for Open, ^F for Find, ^H for Help, and ^Q for Quit,</span><br><span class="line">## then uncomment these:</span><br><span class="line">#bind ^X cut main</span><br><span class="line">#bind ^C copy main</span><br><span class="line">#bind ^V paste all</span><br><span class="line">#bind ^Q exit all</span><br><span class="line">#bind ^S savefile main</span><br><span class="line">#bind ^W writeout main</span><br><span class="line">#bind ^O insert main</span><br><span class="line">#set multibuffer</span><br><span class="line">#bind ^H help all</span><br><span class="line">#bind ^H exit help</span><br><span class="line">#bind ^F whereis all</span><br><span class="line">#bind ^G findnext all</span><br><span class="line">#bind ^B wherewas all</span><br><span class="line">#bind ^D findprevious all</span><br><span class="line">#bind ^R replace main</span><br><span class="line">#bind ^Z undo main</span><br><span class="line">#bind ^Y redo main</span><br><span class="line">#unbind ^K main</span><br><span class="line">#unbind ^U all</span><br><span class="line">#unbind ^N main</span><br><span class="line">#unbind ^Y all</span><br><span class="line">#unbind M-J main</span><br><span class="line">#unbind M-T main</span><br><span class="line">#bind ^A mark main</span><br><span class="line">#bind ^P location main</span><br><span class="line">#bind ^T gotoline main</span><br><span class="line">#bind ^T gotodir browser</span><br><span class="line">#bind ^T cutrestoffile execute</span><br><span class="line">#bind ^L linter execute</span><br><span class="line">#bind ^E execute main</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="开启行号显示"><a href="#开启行号显示" class="headerlink" title="开启行号显示"></a>开启行号显示</h2><p>我说的没错吧，人家都给你把配置写好了，需要哪个，退格键把<code>#</code>删掉就好了<br>开启行号的话<br>这样改↓</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set linenumbers</span><br></pre></td></tr></table></figure>
+<p>即可</p>
+<h1 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h1><p><strong>Nano</strong>的快捷键虽然没有vim多，但是也都很好用<br>注：<br><strong>^ &#x3D; Ctrl</strong><br><strong>M &#x3D; Alt</strong></p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>按键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>保存</td>
+<td>^O</td>
+</tr>
+<tr>
+<td>保存并退出</td>
+<td>^X + Y + Enter</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td>^W</td>
+</tr>
+<tr>
+<td>替换</td>
+<td>^R</td>
+</tr>
+<tr>
+<td>选中</td>
+<td>Shift + 方向键</td>
+</tr>
+<tr>
+<td>移动</td>
+<td>方向键</td>
+</tr>
+<tr>
+<td>复制</td>
+<td>M6</td>
+</tr>
+<tr>
+<td>剪切</td>
+<td>^K</td>
+</tr>
+<tr>
+<td>粘贴</td>
+<td>^U</td>
+</tr>
+<tr>
+<td>帮助</td>
+<td>^G</td>
+</tr>
+<tr>
+<td>跳转行</td>
+<td>^&#x2F;</td>
+</tr>
+<tr>
+<td>执行命令</td>
+<td>^T</td>
+</tr>
+</tbody></table>
+<p><strong>这个执行命令我觉得比较好用的是ls，可以直接把当前目录所有文件名逐行写入当前文件~</strong></p>
+<h1 id="先更到这咯"><a href="#先更到这咯" class="headerlink" title="先更到这咯~"></a>先更到这咯~</h1>]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>Nano</tag>
+        <tag>windows</tag>
+        <tag>editor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Raspberry Pi Pico 制作 BADusb</title>
+    <url>/article/50956.html</url>
+    <content><![CDATA[<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
+<li>Raspberry Pi Pico （真的很便宜，帮焊接引脚的30r左右，不带引脚的20r左右）</li>
+<li>一台电脑</li>
+<li>数据线 （一定是要可以插进Pico板的线）</li>
+</ul>
+<h1 id="烧录CircuitPython"><a href="#烧录CircuitPython" class="headerlink" title="烧录CircuitPython"></a>烧录CircuitPython</h1><p>下载CircuitPython<br><a href="https://downloads.circuitpython.org/bin/raspberry_pi_pico/en_US/adafruit-circuitpython-raspberry_pi_pico-en_US-7.3.3.uf2">CircuitPython</a><br>下载好后，按住pico板上的<code>BOOTSEL</code>按钮，一定要按住，按住的同时把pico用数据线和电脑连接，电脑没有识别到他之前都不要松手！<br>不出意外，你的电脑应该会把它识别为一个大容量存储设备<br>打开它，并把刚才下载的CircuitPython文件(是uf2后缀)的文件拖入到pico的文件夹里，这时pico会自动重启，表现为窗口突然关闭，等待一会，文件夹窗口又出现，里面多出几个文件，说明烧录成功</p>
+<h1 id="为Pico安装HID库"><a href="#为Pico安装HID库" class="headerlink" title="为Pico安装HID库"></a>为Pico安装HID库</h1><p>其实，这个Pico BADusb的原理就是利用HID，模拟人的键鼠输入来达到做某些事的目的，也就是说，任何你可以用键盘鼠标完成的事，他都可以干，只不过是合不合法的问题<br>下载HID库<br><a href="https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases/download/20221214/adafruit-circuitpython-bundle-7.x-mpy-20221214.zip">HID库</a><br>下载好后解压，打开里面的<code>lib</code>目录找到<code>adafruit_hid</code>、<code>adafruit_debouncer.mpy</code>、<code>adafruit_ticks.mpy</code>和<code>asyncio</code>这四个东西，你不需要知道他们是什么，只需要把它们复制或剪切到pico的<code>lib</code>目录下，好的，完成了吗？</p>
+<h1 id="为Pico导入执行Python文件"><a href="#为Pico导入执行Python文件" class="headerlink" title="为Pico导入执行Python文件"></a>为Pico导入执行Python文件</h1><p>下载文件包<br><a href="https://github.com/dbisu/pico-ducky/archive/refs/heads/main.zip">文件包</a><br>解压他，并把里面的<code>duckyinpython.py</code>拖到pico的文件夹下，就是pico的根目录，拖动好后删除原来的<code>code.py</code>并把<code>duckyinpython.py</code>改名为<code>code.py</code><br>好的，现在你只差最后一步就可以完工了</p>
+<h1 id="写入待执行文件"><a href="#写入待执行文件" class="headerlink" title="写入待执行文件"></a>写入待执行文件</h1><p>打开任何编辑器开始编辑你的待执行文件吧，在编写好后意味着，一旦插入这个pico，他将执行那里面的所有代码<br>在编写前，先了解几个简单的语法<br><code>DELAY 毫秒</code> 延迟时间，可以用在两个命令的中间，后面的毫秒就是他要延迟的时间<br><code>GUI r</code> 相当于快捷键<code>Win</code>+<code>R</code><br><code>STRING 文本</code> 输入的文本，后面跟的字就是他会模拟键盘输入输入那些字符<br><code>ENTER</code> 按下回车键<br><code>CTRL</code> 按下CTRL键<br><code>字母</code> 按下某个字母（你指定）<br>这些是比较基础的<br>如果是ctrl组合的快捷键，那么就是<br><code>CTRL 快捷键的第二个键</code><br>这里面的关键字字符全部是大写<br>一行写一个<br>写好后保存名为<code>payload.dd</code><br>这里分享我写的一个简单的rickroll恶搞，具体就是运行cmd打开b站的网址</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELAY 20</span><br><span class="line">CTRL ESC</span><br><span class="line">DELAY 250</span><br><span class="line">STRING cmd</span><br><span class="line">DELAY 250</span><br><span class="line">ENTER</span><br><span class="line">ENTER</span><br><span class="line">DELAY 1500</span><br><span class="line">STRING start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">ENTER</span><br></pre></td></tr></table></figure>
+<p>翻译</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">等待20毫秒</span><br><span class="line">按下CTRL + ESC调出搜索窗口</span><br><span class="line">等待250毫秒</span><br><span class="line">输入 cmd</span><br><span class="line">回车</span><br><span class="line">回车</span><br><span class="line">等待1500毫秒</span><br><span class="line">输入 start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">回车</span><br></pre></td></tr></table></figure>
+<p>你也可以试试<br>保存为<code>payload.dd</code>后把它拖入pico的根目录，这时！！！这时你记住！！一定在拖进去并且确认他已经在里面的一瞬间，拔掉你的pico！！！以免他提前运行<br>好了<br>现在你的BADusb就制作完成了，把他连接到你的电脑试试吧！</p>
+<h1 id="把pico恢复原样或者进行脚本编辑"><a href="#把pico恢复原样或者进行脚本编辑" class="headerlink" title="把pico恢复原样或者进行脚本编辑"></a>把pico恢复原样或者进行脚本编辑</h1><p>你肯定想过，一旦插上他就会以我也不知道多少的输入速度执行里面的命令！！！如果你写的脚本相当狠的话，那就寄了（<br>那么怎么重新编辑里面的脚本或者怎么恢复原样呢？<br>很简单<br>把他拔下来，按住<code>BOOTSEL</code>键再连接回去，和这篇文章开头的过程一样，这时，下载这个文件<br><a href="https://cdn-learn.adafruit.com/assets/assets/000/099/419/original/flash_nuke.uf2?1613329170">恢复文件</a><br>下载好后，把他拖进pico根目录，它就会自动重启，恢复完成！</p>
+]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>BADUSB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>WindowsApps权限出错的修复记录</title>
     <url>/article/89fcca78.html</url>
     <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>我认为Linux下的<code>Ctrl</code>+<code>Alt</code>+<code>T</code>打开终端这个设计非常的好，非常的人性化，反观Windows（<br>有点那啥了<br>于是我就想给我的Win<del>祖宗</del>设置一个同款快捷键<br>在win上我喜欢用<strong>Windows Terminal</strong>这个工具搭配<strong>Git Bash</strong><br>至于为啥用<strong>Git Bash</strong>，谁叫人家自带<strong>Nano</strong>，<strong>Vim</strong>等好用的工具呢~<br><strong>Windows Terminal</strong>在win11里变成了系统自带的工具，甚至被设置成了默认的，不过它的安装来源却是<strong>Microsoft Store</strong>，就比较该死（<br>因为这里面安装的软件，除非你自定义了安装路径，否则他们都会被安装在C盘下的一个<strong>WindowsApps</strong>目录里，最该死的事发生了，这个破目录权限出奇的高，就是说不改权限就甭想访问它，但是如果手贱改了权限，改成了<code>Everyone</code>，那就会像我一样，<code>Win</code>+<code>R</code>后输入<code>wt</code>就再也打不开终端了 T~T</p>
@@ -180,34 +266,6 @@
         <tag>WindowsApps</tag>
         <tag>修复</tag>
         <tag>权限</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>强大的视频下载工具Youtube-dl</title>
-    <url>/article/16598.html</url>
-    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>在小破站看到自己喜欢的视频，想保存下来，可是小破站的视频下载功能只能下载视频部分内容，而且还带水印💢<br>网上的在线解析下载也不是很多，而且说不定哪天就被蜀黍和阿姨咔嚓了<br>这篇文章教你如何使用一款名为<code>Youtube-dl</code>的工具下载视频<br>这个工具相对稳定，你看它的名字就知道是外国人制作的，叔叔不会连外国人都不放过罢（</p>
-<h1 id="安装Pip"><a href="#安装Pip" class="headerlink" title="安装Pip"></a>安装Pip</h1><p>这个工具可以在大多命令行运行，需要通过pip安装<br>下面将以Utermux为例，演示安装步骤和使用方法，你也可以用termux，电脑可以是windows，ubuntu任何系统的命令行<br>输入命令<br>在termux上安装</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pkg install python3</span><br></pre></td></tr></table></figure>
-<p>输入命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install python3 -y</span><br></pre></td></tr></table></figure>
-<p>在具有apt包的系统上安装<br>如果你是windows的话，直接在Python官网下载python3环境即可<br><a href="https://www.python.org/">Python官网</a></p>
-<h1 id="安装Youtube-dl"><a href="#安装Youtube-dl" class="headerlink" title="安装Youtube-dl"></a>安装Youtube-dl</h1><p>如果你是termux或windows<br>执行命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install youtube-dl</span><br></pre></td></tr></table></figure>
-<p>如果你是linux<br>执行命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo pip install youtube-dl</span><br></pre></td></tr></table></figure>
-<p><img src="/imgs/youtubedl-1.jpg" alt="1"><br>等待运行完成即可</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>执行命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">youtube-dl 你想要下载的b站视频的链接</span><br></pre></td></tr></table></figure>
-<p>注意，这里是链接，https打头的那个！<br>当然也可以是youtube视频链接，方法同理<br><img src="/imgs/youtubedl-2.jpg" alt="2"><br>输入<code>ls</code>，如果你是windows就输入<code>dir</code><br><img src="/imgs/youtubedl-3.jpg" alt="3"><br>就能看到与你相下载的视频同名的文件了<br>如果你用的电脑，可以直接打开该目录查看视频<br>如果你用的termux或其他手机终端，我建议你把它copy到一个便于寻找的位置<br>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp 视频文件名 你想复制到地方</span><br></pre></td></tr></table></figure>
-<p><img src="/imgs/youtubedl-4.jpg" alt="4"><br>即可<br>使用文件管理工具找到那个位置，就可以愉快的看视频了<br><img src="/imgs/youtubedl-5.jpg" alt="5"></p>
-]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>youtube-dl</tag>
-        <tag>termux</tag>
       </tags>
   </entry>
   <entry>
@@ -268,29 +326,6 @@
         <tag>问题解决</tag>
         <tag>黑屏</tag>
         <tag>BUG</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>追加内容 JohnTheRipper的windows版下载及使用</title>
-    <url>/article/6063.html</url>
-    <content><![CDATA[<p>有的人可能没有kali，今天补一篇教大家用windows下载john破解zip</p>
-<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
-<li>Windows</li>
-<li>JohnTheRipper的其他系统版本</li>
-<li>一个待破解的zip包</li>
-</ul>
-<p>首先需要下载你系统对应的版本<br><a href="https://www.openwall.com/john/">John官网</a><br>你可以在这里找到对应版本，但是不要下载john，要下载john的jumbo版，这个版本貌似是社区开发，里面包含了许多破解其他密码的模块插件等<br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win64.zip">Win64</a><br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win32.zip">Win32</a><br>下载好后应该是一个zip包，解压他，把它放到你能找到的地方，这里建议<br><code>最好不要放在桌面</code><br>可以放在D:盘<br>解压他到一个文件夹，这个文件夹命名为<code>john</code></p>
-<h1 id="开始破解"><a href="#开始破解" class="headerlink" title="开始破解"></a>开始破解</h1><p>这里需要停一下，如果你没看过我写的那篇kali破解的教程，请务必去看一下，因为破解过程和kali没什么区别<br><a href="https://v1nnyawa.github.io/2022/12/13/John-The-Ripper-Crunch-%E7%A0%B4%E8%A7%A3zip%E5%AF%86%E7%A0%81/">Kali破解zip包教程</a><br>好的，在你看完那篇教程之后可以开始使用Windows破解了<br>把你待破解的<code>zip</code>包拖到john文件夹的<code>run</code>目录下，那里面有很多文件，所以在拖动前请给你的zip包起一个显眼的名字，如果你能找到，不起也可以<br>右键打开终端<br>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip2john.exe 你的zip包名 &gt; 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
-<p>这里你会发现，其实和kali没啥区别，只是在zip2john后加上<code>.exe</code>而已<br>执行后会在<code>run</code>目录生成一个和你输入的解析后的hash文件名同名的文件，那就是存储该zip包hash值的文件<br>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">john.exe 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
-<p>等待一会，密码应该可以出来（弱密码的情况下）<br>密码强一点的同理，和在kali一样，需要一个强大的字典，你也可以通过安装<code>crunch</code>来达到生成字典的目的，引用字典的方法和kali也一样，这里不过多赘述</p>
-]]></content>
-      <categories>
-        <category>Kali</category>
-      </categories>
-      <tags>
-        <tag>JohnTheRipper</tag>
       </tags>
   </entry>
   <entry>
@@ -389,13 +424,64 @@
         <category>其他</category>
       </categories>
       <tags>
+        <tag>windows</tag>
+        <tag>editor</tag>
         <tag>wsl</tag>
         <tag>ubuntu</tag>
-        <tag>windows</tag>
         <tag>lunarvim</tag>
         <tag>vim</tag>
         <tag>ide</tag>
-        <tag>editor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>强大的视频下载工具Youtube-dl</title>
+    <url>/article/16598.html</url>
+    <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>在小破站看到自己喜欢的视频，想保存下来，可是小破站的视频下载功能只能下载视频部分内容，而且还带水印💢<br>网上的在线解析下载也不是很多，而且说不定哪天就被蜀黍和阿姨咔嚓了<br>这篇文章教你如何使用一款名为<code>Youtube-dl</code>的工具下载视频<br>这个工具相对稳定，你看它的名字就知道是外国人制作的，叔叔不会连外国人都不放过罢（</p>
+<h1 id="安装Pip"><a href="#安装Pip" class="headerlink" title="安装Pip"></a>安装Pip</h1><p>这个工具可以在大多命令行运行，需要通过pip安装<br>下面将以Utermux为例，演示安装步骤和使用方法，你也可以用termux，电脑可以是windows，ubuntu任何系统的命令行<br>输入命令<br>在termux上安装</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pkg install python3</span><br></pre></td></tr></table></figure>
+<p>输入命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install python3 -y</span><br></pre></td></tr></table></figure>
+<p>在具有apt包的系统上安装<br>如果你是windows的话，直接在Python官网下载python3环境即可<br><a href="https://www.python.org/">Python官网</a></p>
+<h1 id="安装Youtube-dl"><a href="#安装Youtube-dl" class="headerlink" title="安装Youtube-dl"></a>安装Youtube-dl</h1><p>如果你是termux或windows<br>执行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install youtube-dl</span><br></pre></td></tr></table></figure>
+<p>如果你是linux<br>执行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo pip install youtube-dl</span><br></pre></td></tr></table></figure>
+<p><img src="/imgs/youtubedl-1.jpg" alt="1"><br>等待运行完成即可</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>执行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">youtube-dl 你想要下载的b站视频的链接</span><br></pre></td></tr></table></figure>
+<p>注意，这里是链接，https打头的那个！<br>当然也可以是youtube视频链接，方法同理<br><img src="/imgs/youtubedl-2.jpg" alt="2"><br>输入<code>ls</code>，如果你是windows就输入<code>dir</code><br><img src="/imgs/youtubedl-3.jpg" alt="3"><br>就能看到与你相下载的视频同名的文件了<br>如果你用的电脑，可以直接打开该目录查看视频<br>如果你用的termux或其他手机终端，我建议你把它copy到一个便于寻找的位置<br>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp 视频文件名 你想复制到地方</span><br></pre></td></tr></table></figure>
+<p><img src="/imgs/youtubedl-4.jpg" alt="4"><br>即可<br>使用文件管理工具找到那个位置，就可以愉快的看视频了<br><img src="/imgs/youtubedl-5.jpg" alt="5"></p>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>youtube-dl</tag>
+        <tag>termux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>追加内容 JohnTheRipper的windows版下载及使用</title>
+    <url>/article/6063.html</url>
+    <content><![CDATA[<p>有的人可能没有kali，今天补一篇教大家用windows下载john破解zip</p>
+<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
+<li>Windows</li>
+<li>JohnTheRipper的其他系统版本</li>
+<li>一个待破解的zip包</li>
+</ul>
+<p>首先需要下载你系统对应的版本<br><a href="https://www.openwall.com/john/">John官网</a><br>你可以在这里找到对应版本，但是不要下载john，要下载john的jumbo版，这个版本貌似是社区开发，里面包含了许多破解其他密码的模块插件等<br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win64.zip">Win64</a><br><a href="https://www.openwall.com/john/k/john-1.9.0-jumbo-1-win32.zip">Win32</a><br>下载好后应该是一个zip包，解压他，把它放到你能找到的地方，这里建议<br><code>最好不要放在桌面</code><br>可以放在D:盘<br>解压他到一个文件夹，这个文件夹命名为<code>john</code></p>
+<h1 id="开始破解"><a href="#开始破解" class="headerlink" title="开始破解"></a>开始破解</h1><p>这里需要停一下，如果你没看过我写的那篇kali破解的教程，请务必去看一下，因为破解过程和kali没什么区别<br><a href="https://v1nnyawa.github.io/2022/12/13/John-The-Ripper-Crunch-%E7%A0%B4%E8%A7%A3zip%E5%AF%86%E7%A0%81/">Kali破解zip包教程</a><br>好的，在你看完那篇教程之后可以开始使用Windows破解了<br>把你待破解的<code>zip</code>包拖到john文件夹的<code>run</code>目录下，那里面有很多文件，所以在拖动前请给你的zip包起一个显眼的名字，如果你能找到，不起也可以<br>右键打开终端<br>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip2john.exe 你的zip包名 &gt; 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
+<p>这里你会发现，其实和kali没啥区别，只是在zip2john后加上<code>.exe</code>而已<br>执行后会在<code>run</code>目录生成一个和你输入的解析后的hash文件名同名的文件，那就是存储该zip包hash值的文件<br>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">john.exe 解析后的hash文件名.hash</span><br></pre></td></tr></table></figure>
+<p>等待一会，密码应该可以出来（弱密码的情况下）<br>密码强一点的同理，和在kali一样，需要一个强大的字典，你也可以通过安装<code>crunch</code>来达到生成字典的目的，引用字典的方法和kali也一样，这里不过多赘述</p>
+]]></content>
+      <categories>
+        <category>Kali</category>
+      </categories>
+      <tags>
+        <tag>JohnTheRipper</tag>
       </tags>
   </entry>
 </search>
