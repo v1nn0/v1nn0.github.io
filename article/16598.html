@@ -14,12 +14,13 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
   <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"v1nn0.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"v1nn0.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="使用任何命令行安装此工具并下载你想要的视频">
@@ -246,6 +247,13 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
             <div class="post-description">使用任何命令行安装此工具并下载你想要的视频</div>
 
         </div>
@@ -267,12 +275,12 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install youtube-dl</span><br></pre></td></tr></table></figure>
 <p>如果你是linux<br>执行命令</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install youtube-dl</span><br></pre></td></tr></table></figure>
-<p><img src="/imgs/youtubedl-1.jpg" alt="1"><br>等待运行完成即可</p>
+<p><img data-src="/imgs/youtubedl-1.jpg" alt="1"><br>等待运行完成即可</p>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>执行命令</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl 你想要下载的b站视频的链接</span><br></pre></td></tr></table></figure>
-<p>注意，这里是链接，https打头的那个！<br>当然也可以是youtube视频链接，方法同理<br><img src="/imgs/youtubedl-2.jpg" alt="2"><br>输入<code>ls</code>，如果你是windows就输入<code>dir</code><br><img src="/imgs/youtubedl-3.jpg" alt="3"><br>就能看到与你相下载的视频同名的文件了<br>如果你用的电脑，可以直接打开该目录查看视频<br>如果你用的termux或其他手机终端，我建议你把它copy到一个便于寻找的位置<br>输入</p>
+<p>注意，这里是链接，https打头的那个！<br>当然也可以是youtube视频链接，方法同理<br><img data-src="/imgs/youtubedl-2.jpg" alt="2"><br>输入<code>ls</code>，如果你是windows就输入<code>dir</code><br><img data-src="/imgs/youtubedl-3.jpg" alt="3"><br>就能看到与你相下载的视频同名的文件了<br>如果你用的电脑，可以直接打开该目录查看视频<br>如果你用的termux或其他手机终端，我建议你把它copy到一个便于寻找的位置<br>输入</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp 视频文件名 你想复制到地方</span><br></pre></td></tr></table></figure>
-<p><img src="/imgs/youtubedl-4.jpg" alt="4"><br>即可<br>使用文件管理工具找到那个位置，就可以愉快的看视频了<br><img src="/imgs/youtubedl-5.jpg" alt="5"></p>
+<p><img data-src="/imgs/youtubedl-4.jpg" alt="4"><br>即可<br>使用文件管理工具找到那个位置，就可以愉快的看视频了<br><img data-src="/imgs/youtubedl-5.jpg" alt="5"></p>
 
     </div>
 
@@ -459,6 +467,9 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
 
 
 
@@ -473,6 +484,9 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 

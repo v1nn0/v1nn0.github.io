@@ -14,12 +14,13 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
   <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"v1nn0.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"v1nn0.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="真正开箱即用的轻量级文本编辑工具！">
@@ -237,6 +238,13 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
             <div class="post-description">真正开箱即用的轻量级文本编辑工具！</div>
 
         </div>
@@ -248,7 +256,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>三年前，我在看一位外国大佬的教学视频时了解到了<strong>Nano</strong>这款编辑器<br><del>那个大佬真的很爱用这个东西（</del><br>当我第一次看到它的时候，就喜欢上了它<br><strong>Nano</strong>对于新手来说，没有初次打开的<strong>Vim</strong>那种恐惧感，相反，它给人一种清新简单且人性化的感觉，整个页面的设计很简单，上面是一个标题栏，下面是两行快捷键提示和一行简短的信息框<br><img src="/imgs/winnano-1.jpg" alt="1"><br>背景是我自己配置的，是直接配置的终端背景<br>这个行号显示也需要自己配置，不过相当的简单，配置全程只需要你按一下<strong>退格键</strong><br><strong>Nano</strong>的语法高亮也是十分的好用，它还内置了<strong>拼写检查</strong>，<strong>自动补全</strong>等功能，这些功能在vim上全部是需要自己配置，而在<strong>Nano</strong>里，它内置！</p>
+        <h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>三年前，我在看一位外国大佬的教学视频时了解到了<strong>Nano</strong>这款编辑器<br><del>那个大佬真的很爱用这个东西（</del><br>当我第一次看到它的时候，就喜欢上了它<br><strong>Nano</strong>对于新手来说，没有初次打开的<strong>Vim</strong>那种恐惧感，相反，它给人一种清新简单且人性化的感觉，整个页面的设计很简单，上面是一个标题栏，下面是两行快捷键提示和一行简短的信息框<br><img data-src="/imgs/winnano-1.jpg" alt="1"><br>背景是我自己配置的，是直接配置的终端背景<br>这个行号显示也需要自己配置，不过相当的简单，配置全程只需要你按一下<strong>退格键</strong><br><strong>Nano</strong>的语法高亮也是十分的好用，它还内置了<strong>拼写检查</strong>，<strong>自动补全</strong>等功能，这些功能在vim上全部是需要自己配置，而在<strong>Nano</strong>里，它内置！</p>
 <blockquote>
 <p>感谢你听我说完这些废话</p>
 </blockquote>
@@ -505,6 +513,9 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
 
 
 
@@ -519,6 +530,9 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 

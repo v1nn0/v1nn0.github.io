@@ -14,12 +14,13 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
   <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"v1nn0.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"v1nn0.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="开箱即用的Lunarvim配合wslubuntu打造终端IDE">
@@ -249,6 +250,13 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
             <div class="post-description">开箱即用的Lunarvim配合wslubuntu打造终端IDE</div>
 
         </div>
@@ -264,7 +272,7 @@
 <h1 id="开启适用于Linux的windows子系统和虚拟机平台"><a href="#开启适用于Linux的windows子系统和虚拟机平台" class="headerlink" title="开启适用于Linux的windows子系统和虚拟机平台"></a>开启适用于Linux的windows子系统和虚拟机平台</h1><blockquote>
 <p>如果你以前使用过wsl子系统请跳过这步<br>如果你使用的是Linux或Macos请跳过这步</p>
 </blockquote>
-<p>windows下按<code>Win</code>+<code>Q</code>键，输入<code>启用或关闭Windows功能</code><br><img src="/imgs/lvim-1.jpg" alt="1"><br>勾选<code>开启适用于Linux的windows子系统</code>和<code>虚拟机平台</code>并确认，然后重启电脑</p>
+<p>windows下按<code>Win</code>+<code>Q</code>键，输入<code>启用或关闭Windows功能</code><br><img data-src="/imgs/lvim-1.jpg" alt="1"><br>勾选<code>开启适用于Linux的windows子系统</code>和<code>虚拟机平台</code>并确认，然后重启电脑</p>
 <h1 id="升级为WSL2"><a href="#升级为WSL2" class="headerlink" title="升级为WSL2"></a>升级为WSL2</h1><blockquote>
 <p>如果你以前使用过wsl子系统请跳过这步<br>如果你使用的是Linux或Macos请跳过这步</p>
 </blockquote>
@@ -284,12 +292,12 @@
 <p>安装好后打开，输入<code>用户名</code>，<code>密码</code>回车即可<br>打开windows cmd输入</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wslconfig /l</span><br></pre></td></tr></table></figure>
 <p>找到Ubuntu，看看后面的版本号，记下来</p>
-<h1 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h1><p>首先需要换源，如果你身处海外就不用换源了<br>访问<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">清华镜像站</a><br>选择你的版本号<br>并复制下面的源<br><img src="/imgs/lvim-2.jpg" alt="2"><br>打开Ubuntu子系统<br>输入</p>
+<h1 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h1><p>首先需要换源，如果你身处海外就不用换源了<br>访问<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">清华镜像站</a><br>选择你的版本号<br>并复制下面的源<br><img data-src="/imgs/lvim-2.jpg" alt="2"><br>打开Ubuntu子系统<br>输入</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/apt &amp;&amp; sudo <span class="built_in">cp</span> sources.list sources.list.backup &amp;&amp; sudo <span class="built_in">rm</span> sources.list &amp;&amp; sudo nano sources.list</span><br></pre></td></tr></table></figure>
 <p>它会要求你输入你的密码，就是一开始打开ubuntu子系统要求输入的密码<br>输入完成后就进入了nano界面，nano是一款文本编辑器，接下来你只需要把刚才在清华镜像站复制的源粘贴进来即可<br>然后按下<code>ctrl</code>+<code>x</code>然后<code>y</code>接着<code>Enter</code><br>即可<br>输入</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt upgrade</span><br></pre></td></tr></table></figure>
 <p>等待一会，中途会让你选择Y或N，选择Y<br>接着等，等全部执行完成后换源就完成了</p>
-<h1 id="安装必须软件"><a href="#安装必须软件" class="headerlink" title="安装必须软件"></a>安装必须软件</h1><p>访问<a target="_blank" rel="noopener" href="https://www.lunarvim.org/docs/installation">Lunarvim官网</a>查看先决条件<br><img src="/imgs/lvim-3.jpg" alt="3"></p>
+<h1 id="安装必须软件"><a href="#安装必须软件" class="headerlink" title="安装必须软件"></a>安装必须软件</h1><p>访问<a target="_blank" rel="noopener" href="https://www.lunarvim.org/docs/installation">Lunarvim官网</a>查看先决条件<br><img data-src="/imgs/lvim-3.jpg" alt="3"></p>
 <p>需要安装<code>Neovim</code>，<code>Git</code>，<code>Make</code>，<code>Pip</code>，<code>Python3</code>，<code>Npm</code>，<code>Nodejs</code>和<code>Cargo</code></p>
 <p>执行命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git make python3 python3-pip nodejs npm cargo -y</span><br></pre></td></tr></table></figure>
@@ -539,6 +547,9 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
 
 
 
@@ -553,6 +564,9 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
