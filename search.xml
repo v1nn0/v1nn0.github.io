@@ -47,6 +47,112 @@
       </tags>
   </entry>
   <entry>
+    <title>2022 Hexo &amp; Github 搭建Blog</title>
+    <url>/article/59607.html</url>
+    <content><![CDATA[<p>Hexo是一款著名的博客框架，其一向以简洁快速著称，我的博客就是以它为基础搭建的，而且全程不需要花一分钱<br>文字教程</p>
+<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
+<li><input disabled="" type="checkbox"> 一台电脑（废话）</li>
+<li><input disabled="" type="checkbox"> node.js的环境</li>
+<li><input disabled="" type="checkbox"> 一个Github账号</li>
+<li><input disabled="" type="checkbox"> Git</li>
+<li><input checked="" disabled="" type="checkbox"> 一个聪明的大脑（我相信你一定有的）</li>
+</ul>
+<h1 id="前期准备步骤"><a href="#前期准备步骤" class="headerlink" title="前期准备步骤"></a>前期准备步骤</h1><p><strong>Node.js官网下载</strong><br><a href="http://nodejs.cn/download/">Node.js</a><br>选择你所使用的系统和他相应的安装包。windows建议msi<br>安装好后打开终端输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
+<p>如果有版本号就说明安装成功</p>
+<p><strong>Git官网下载</strong><br><a href="https://git-scm.com/">GIt</a></p>
+<p>准备好的话就可以开始搭建了</p>
+<h1 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h1><p><strong>新建博客文件夹</strong><br>在任何地方新建一个文件夹，名称随意，这里建议不要放在C盘，我的名称叫Blog，你也可以使用这个名字（随便起但你要记住）<br><strong>下载Hexo文件</strong><br>打开windows终端，cd到你的博客文件夹<br>输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+<p>跑完命令后输入<code>hexo -v</code>检查是否安装成功，显示版本号即为成功<br>接着输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>不出意外的话，最后一句话应该是“Start blogging with Hexo!”<br><del><em>如果没有的话，不出意外，应该是出意外了</em></del><br>如果你成功了，这时你的文件夹里应该会出现一堆文件<br>输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>并打开浏览器访问</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:4000/</span><br></pre></td></tr></table></figure>
+<p>就可以看到你的博客在本地运行起来了，好好欣赏一下吧<br>欣赏完必须关闭它，不要急着关闭终端，按下<br><code>Ctrl</code>+<code>C</code><br>他就会关闭了<br><strong>修改配置文件</strong><br>打开终端cd到博客文件夹，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo clean &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+<p>并访问</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:4000/</span><br></pre></td></tr></table></figure>
+<p>现在在终端按下<code>Ctrl</code>+<code>C</code>来停止本地访问<br>下面来更改博客的内容<br>打开<code>_config.yml</code>文件，同时对照以下列表修改内容</p>
+<p><code>title</code> 网站标题</p>
+<p><code>subtitle</code> 网站副标题</p>
+<p><code>description</code> 网站描述</p>
+<p><code>keywords</code> 网站的关键词。支持多个关键词。</p>
+<p><code>author</code> 您的名字</p>
+<p><code>language</code> 网站使用的语言。对于简体中文用户来说，使用不同的主题可能需要设置成不同的值，请参考你的主题的文档自行设置，常见的有  <code>zh-Hans</code>和  <code>zh-CN</code>。</p>
+<p><code>timezone</code> 网站时区。Hexo 默认使用您电脑的时区。请参考  <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">时区列表</a>  进行设置，如  <code>America/New_York</code>,  <code>Japan</code>, 和  <code>UTC</code>  。一般的，对于中国大陆地区可以使用  <code>Asia/Shanghai</code>。<br>更改好后保存退出，同样执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo clean &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+<p>并访问</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:4000/</span><br></pre></td></tr></table></figure>
+<p>   但你一定要记住，执行完<code>hexo s</code>的命令后一定不要关闭终端，在你想停止本地访问的时候切到终端按下熟悉的<code>Ctrl</code>+<code>C</code><br>  <strong>上传到Github开启访问</strong><br>  用资源管理器打开你的博客文件夹并右键选择<code>Git bash here</code>，如果没有该选项，请检查你的git安装是否正确<br>打开后输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C “你注册github时的邮箱”</span><br></pre></td></tr></table></figure>
+<p>按回车，出现内容再按回车，出现内容再按回车，出现内容再按回车，四次回车，好的<br>出现ssh的方框框就说明成功了<br>资源管理器打开<br>C:\用户（或者User）\你的用户名.ssh<br>在这个文件夹里找到一个名为<code>id.rsa.pub</code>的文件，不要找错了，注意看下右侧的时间，要和你生成key的时间相吻合。打开那个文件复制里面的全部内容<br>打开浏览器，github，登陆一下<br>点击右上角头像旁的小三角，选择<code>setting</code><br>在出现的页面左侧选择<code>SSH and GPG keys</code><br>点击右侧<code>New SSH Key</code><br>title随便起个名字，把你刚才复制的那一大长串字粘贴到下面的<code>key</code>栏<br>点击<code>add ssh key</code>保存即可<br>打开你的git bash，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>如果出现了你的github用户名说明绑定成功，可以进行下一步骤<br>打开github，新建一个仓库（不是吧，你不会连仓库都不会建吧？？）<br>起名为<code>你的github用户名.github.io</code><br>并开启生成README文件<br>选择public<br>创建仓库<br>下面进行仓库连接<br>复制你的仓库网址，打开本地博客文件夹里的<code>_config.yml</code><br>把最后一行的</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br></pre></td></tr></table></figure>
+<p>替换为</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">你的仓库链接</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
+<p>保存并退出<br>打开windwos终端，cd到你的博客文件夹<br>输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer–git --save</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cnpm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>你可以挨个试试，第一个报错了就用第二个<br>完成后输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<p>生成页面，再输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<p>然后</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>他就开始向github上传文件了<br>你可以打开github看看你的仓库，如果里面出现一些文件就说明成功了<br>访问</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://你的github用户名.github.io</span><br></pre></td></tr></table></figure>
+<p>这就是你的博客了，成功！</p>
+<h1 id="写作方法"><a href="#写作方法" class="headerlink" title="写作方法"></a>写作方法</h1><p>Hexo博客的文章撰写采取markdown格式，所以我们需要一个markdown编辑器，网上有很多，可以找找，我用的是<code>Stack Edit</code>，一款在线编辑器，他有下载到桌面的功能，可以满足我们的基础使用<br>打开windows终端，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;你的新文章的标题&quot;</span></span><br></pre></td></tr></table></figure>
+<p>这样就新建了一个文章，打开</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">博客文件夹\source\_posts</span><br></pre></td></tr></table></figure>
+<p>里面就是存放文章的地方，你可以看到一个和你刚刚创建的文章同名的md文件，打开它开始编辑吧<br>编辑完成后保存退出，打开windows终端，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+<p>访问</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:4000/</span><br></pre></td></tr></table></figure>
+<p>预览一下你的文章，确认无误后，再在终端输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo clean &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+<p>等待一会你的文章就上传完毕了，打开</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">你的github用户名.github.io</span><br></pre></td></tr></table></figure>
+<p>即可看到你的博客啦</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Raspberry Pi Pico 制作 BADusb</title>
+    <url>/article/50956.html</url>
+    <content><![CDATA[<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
+<li>Raspberry Pi Pico （真的很便宜，帮焊接引脚的30r左右，不带引脚的20r左右）</li>
+<li>一台电脑</li>
+<li>数据线 （一定是要可以插进Pico板的线）</li>
+</ul>
+<h1 id="烧录CircuitPython"><a href="#烧录CircuitPython" class="headerlink" title="烧录CircuitPython"></a>烧录CircuitPython</h1><p>下载CircuitPython<br><a href="https://downloads.circuitpython.org/bin/raspberry_pi_pico/en_US/adafruit-circuitpython-raspberry_pi_pico-en_US-7.3.3.uf2">CircuitPython</a><br>下载好后，按住pico板上的<code>BOOTSEL</code>按钮，一定要按住，按住的同时把pico用数据线和电脑连接，电脑没有识别到他之前都不要松手！<br>不出意外，你的电脑应该会把它识别为一个大容量存储设备<br>打开它，并把刚才下载的CircuitPython文件(是uf2后缀)的文件拖入到pico的文件夹里，这时pico会自动重启，表现为窗口突然关闭，等待一会，文件夹窗口又出现，里面多出几个文件，说明烧录成功</p>
+<h1 id="为Pico安装HID库"><a href="#为Pico安装HID库" class="headerlink" title="为Pico安装HID库"></a>为Pico安装HID库</h1><p>其实，这个Pico BADusb的原理就是利用HID，模拟人的键鼠输入来达到做某些事的目的，也就是说，任何你可以用键盘鼠标完成的事，他都可以干，只不过是合不合法的问题<br>下载HID库<br><a href="https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases/download/20221214/adafruit-circuitpython-bundle-7.x-mpy-20221214.zip">HID库</a><br>下载好后解压，打开里面的<code>lib</code>目录找到<code>adafruit_hid</code>、<code>adafruit_debouncer.mpy</code>、<code>adafruit_ticks.mpy</code>和<code>asyncio</code>这四个东西，你不需要知道他们是什么，只需要把它们复制或剪切到pico的<code>lib</code>目录下，好的，完成了吗？</p>
+<h1 id="为Pico导入执行Python文件"><a href="#为Pico导入执行Python文件" class="headerlink" title="为Pico导入执行Python文件"></a>为Pico导入执行Python文件</h1><p>下载文件包<br><a href="https://github.com/dbisu/pico-ducky/archive/refs/heads/main.zip">文件包</a><br>解压他，并把里面的<code>duckyinpython.py</code>拖到pico的文件夹下，就是pico的根目录，拖动好后删除原来的<code>code.py</code>并把<code>duckyinpython.py</code>改名为<code>code.py</code><br>好的，现在你只差最后一步就可以完工了</p>
+<h1 id="写入待执行文件"><a href="#写入待执行文件" class="headerlink" title="写入待执行文件"></a>写入待执行文件</h1><p>打开任何编辑器开始编辑你的待执行文件吧，在编写好后意味着，一旦插入这个pico，他将执行那里面的所有代码<br>在编写前，先了解几个简单的语法<br><code>DELAY 毫秒</code> 延迟时间，可以用在两个命令的中间，后面的毫秒就是他要延迟的时间<br><code>GUI r</code> 相当于快捷键<code>Win</code>+<code>R</code><br><code>STRING 文本</code> 输入的文本，后面跟的字就是他会模拟键盘输入输入那些字符<br><code>ENTER</code> 按下回车键<br><code>CTRL</code> 按下CTRL键<br><code>字母</code> 按下某个字母（你指定）<br>这些是比较基础的<br>如果是ctrl组合的快捷键，那么就是<br><code>CTRL 快捷键的第二个键</code><br>这里面的关键字字符全部是大写<br>一行写一个<br>写好后保存名为<code>payload.dd</code><br>这里分享我写的一个简单的rickroll恶搞，具体就是运行cmd打开b站的网址</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELAY 20</span><br><span class="line">CTRL ESC</span><br><span class="line">DELAY 250</span><br><span class="line">STRING cmd</span><br><span class="line">DELAY 250</span><br><span class="line">ENTER</span><br><span class="line">ENTER</span><br><span class="line">DELAY 1500</span><br><span class="line">STRING start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">ENTER</span><br></pre></td></tr></table></figure>
+<p>翻译</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">等待20毫秒</span><br><span class="line">按下CTRL + ESC调出搜索窗口</span><br><span class="line">等待250毫秒</span><br><span class="line">输入 cmd</span><br><span class="line">回车</span><br><span class="line">回车</span><br><span class="line">等待1500毫秒</span><br><span class="line">输入 start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">回车</span><br></pre></td></tr></table></figure>
+<p>你也可以试试<br>保存为<code>payload.dd</code>后把它拖入pico的根目录，这时！！！这时你记住！！一定在拖进去并且确认他已经在里面的一瞬间，拔掉你的pico！！！以免他提前运行<br>好了<br>现在你的BADusb就制作完成了，把他连接到你的电脑试试吧！</p>
+<h1 id="把pico恢复原样或者进行脚本编辑"><a href="#把pico恢复原样或者进行脚本编辑" class="headerlink" title="把pico恢复原样或者进行脚本编辑"></a>把pico恢复原样或者进行脚本编辑</h1><p>你肯定想过，一旦插上他就会以我也不知道多少的输入速度执行里面的命令！！！如果你写的脚本相当狠的话，那就寄了（<br>那么怎么重新编辑里面的脚本或者怎么恢复原样呢？<br>很简单<br>把他拔下来，按住<code>BOOTSEL</code>键再连接回去，和这篇文章开头的过程一样，这时，下载这个文件<br><a href="https://cdn-learn.adafruit.com/assets/assets/000/099/419/original/flash_nuke.uf2?1613329170">恢复文件</a><br>下载好后，把他拖进pico根目录，它就会自动重启，恢复完成！</p>
+]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>BADUSB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>WindowsApps权限出错的修复记录</title>
     <url>/article/89fcca78.html</url>
     <content><![CDATA[<h1 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h1><p>我认为Linux下的<code>Ctrl</code>+<code>Alt</code>+<code>T</code>打开终端这个设计非常的好，非常的人性化，反观Windows（<br>有点那啥了<br>于是我就想给我的Win<del>祖宗</del>设置一个同款快捷键<br>在win上我喜欢用<strong>Windows Terminal</strong>这个工具搭配<strong>Git Bash</strong><br>至于为啥用<strong>Git Bash</strong>，谁叫人家自带<strong>Nano</strong>，<strong>Vim</strong>等好用的工具呢~<br><strong>Windows Terminal</strong>在win11里变成了系统自带的工具，甚至被设置成了默认的，不过它的安装来源却是<strong>Microsoft Store</strong>，就比较该死（<br>因为这里面安装的软件，除非你自定义了安装路径，否则他们都会被安装在C盘下的一个<strong>WindowsApps</strong>目录里，最该死的事发生了，这个破目录权限出奇的高，就是说不改权限就甭想访问它，但是如果手贱改了权限，改成了<code>Everyone</code>，那就会像我一样，<code>Win</code>+<code>R</code>后输入<code>wt</code>就再也打不开终端了 T~T</p>
@@ -199,112 +305,6 @@
         <tag>internet</tag>
         <tag>irc聊天室</tag>
         <tag>频道</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Raspberry Pi Pico 制作 BADusb</title>
-    <url>/article/50956.html</url>
-    <content><![CDATA[<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
-<li>Raspberry Pi Pico （真的很便宜，帮焊接引脚的30r左右，不带引脚的20r左右）</li>
-<li>一台电脑</li>
-<li>数据线 （一定是要可以插进Pico板的线）</li>
-</ul>
-<h1 id="烧录CircuitPython"><a href="#烧录CircuitPython" class="headerlink" title="烧录CircuitPython"></a>烧录CircuitPython</h1><p>下载CircuitPython<br><a href="https://downloads.circuitpython.org/bin/raspberry_pi_pico/en_US/adafruit-circuitpython-raspberry_pi_pico-en_US-7.3.3.uf2">CircuitPython</a><br>下载好后，按住pico板上的<code>BOOTSEL</code>按钮，一定要按住，按住的同时把pico用数据线和电脑连接，电脑没有识别到他之前都不要松手！<br>不出意外，你的电脑应该会把它识别为一个大容量存储设备<br>打开它，并把刚才下载的CircuitPython文件(是uf2后缀)的文件拖入到pico的文件夹里，这时pico会自动重启，表现为窗口突然关闭，等待一会，文件夹窗口又出现，里面多出几个文件，说明烧录成功</p>
-<h1 id="为Pico安装HID库"><a href="#为Pico安装HID库" class="headerlink" title="为Pico安装HID库"></a>为Pico安装HID库</h1><p>其实，这个Pico BADusb的原理就是利用HID，模拟人的键鼠输入来达到做某些事的目的，也就是说，任何你可以用键盘鼠标完成的事，他都可以干，只不过是合不合法的问题<br>下载HID库<br><a href="https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases/download/20221214/adafruit-circuitpython-bundle-7.x-mpy-20221214.zip">HID库</a><br>下载好后解压，打开里面的<code>lib</code>目录找到<code>adafruit_hid</code>、<code>adafruit_debouncer.mpy</code>、<code>adafruit_ticks.mpy</code>和<code>asyncio</code>这四个东西，你不需要知道他们是什么，只需要把它们复制或剪切到pico的<code>lib</code>目录下，好的，完成了吗？</p>
-<h1 id="为Pico导入执行Python文件"><a href="#为Pico导入执行Python文件" class="headerlink" title="为Pico导入执行Python文件"></a>为Pico导入执行Python文件</h1><p>下载文件包<br><a href="https://github.com/dbisu/pico-ducky/archive/refs/heads/main.zip">文件包</a><br>解压他，并把里面的<code>duckyinpython.py</code>拖到pico的文件夹下，就是pico的根目录，拖动好后删除原来的<code>code.py</code>并把<code>duckyinpython.py</code>改名为<code>code.py</code><br>好的，现在你只差最后一步就可以完工了</p>
-<h1 id="写入待执行文件"><a href="#写入待执行文件" class="headerlink" title="写入待执行文件"></a>写入待执行文件</h1><p>打开任何编辑器开始编辑你的待执行文件吧，在编写好后意味着，一旦插入这个pico，他将执行那里面的所有代码<br>在编写前，先了解几个简单的语法<br><code>DELAY 毫秒</code> 延迟时间，可以用在两个命令的中间，后面的毫秒就是他要延迟的时间<br><code>GUI r</code> 相当于快捷键<code>Win</code>+<code>R</code><br><code>STRING 文本</code> 输入的文本，后面跟的字就是他会模拟键盘输入输入那些字符<br><code>ENTER</code> 按下回车键<br><code>CTRL</code> 按下CTRL键<br><code>字母</code> 按下某个字母（你指定）<br>这些是比较基础的<br>如果是ctrl组合的快捷键，那么就是<br><code>CTRL 快捷键的第二个键</code><br>这里面的关键字字符全部是大写<br>一行写一个<br>写好后保存名为<code>payload.dd</code><br>这里分享我写的一个简单的rickroll恶搞，具体就是运行cmd打开b站的网址</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELAY 20</span><br><span class="line">CTRL ESC</span><br><span class="line">DELAY 250</span><br><span class="line">STRING cmd</span><br><span class="line">DELAY 250</span><br><span class="line">ENTER</span><br><span class="line">ENTER</span><br><span class="line">DELAY 1500</span><br><span class="line">STRING start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">ENTER</span><br></pre></td></tr></table></figure>
-<p>翻译</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">等待20毫秒</span><br><span class="line">按下CTRL + ESC调出搜索窗口</span><br><span class="line">等待250毫秒</span><br><span class="line">输入 cmd</span><br><span class="line">回车</span><br><span class="line">回车</span><br><span class="line">等待1500毫秒</span><br><span class="line">输入 start https://www.bilibili.com/video/BV1GJ411x7h7/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1e8b094d8bdec0395a59bec11eeecc6a</span><br><span class="line">回车</span><br></pre></td></tr></table></figure>
-<p>你也可以试试<br>保存为<code>payload.dd</code>后把它拖入pico的根目录，这时！！！这时你记住！！一定在拖进去并且确认他已经在里面的一瞬间，拔掉你的pico！！！以免他提前运行<br>好了<br>现在你的BADusb就制作完成了，把他连接到你的电脑试试吧！</p>
-<h1 id="把pico恢复原样或者进行脚本编辑"><a href="#把pico恢复原样或者进行脚本编辑" class="headerlink" title="把pico恢复原样或者进行脚本编辑"></a>把pico恢复原样或者进行脚本编辑</h1><p>你肯定想过，一旦插上他就会以我也不知道多少的输入速度执行里面的命令！！！如果你写的脚本相当狠的话，那就寄了（<br>那么怎么重新编辑里面的脚本或者怎么恢复原样呢？<br>很简单<br>把他拔下来，按住<code>BOOTSEL</code>键再连接回去，和这篇文章开头的过程一样，这时，下载这个文件<br><a href="https://cdn-learn.adafruit.com/assets/assets/000/099/419/original/flash_nuke.uf2?1613329170">恢复文件</a><br>下载好后，把他拖进pico根目录，它就会自动重启，恢复完成！</p>
-]]></content>
-      <categories>
-        <category>树莓派</category>
-      </categories>
-      <tags>
-        <tag>BADUSB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2022 Hexo &amp; Github 搭建Blog</title>
-    <url>/article/59607.html</url>
-    <content><![CDATA[<p>Hexo是一款著名的博客框架，其一向以简洁快速著称，我的博客就是以它为基础搭建的，而且全程不需要花一分钱<br>文字教程</p>
-<h1 id="需要准备"><a href="#需要准备" class="headerlink" title="需要准备"></a>需要准备</h1><ul>
-<li><input disabled="" type="checkbox"> 一台电脑（废话）</li>
-<li><input disabled="" type="checkbox"> node.js的环境</li>
-<li><input disabled="" type="checkbox"> 一个Github账号</li>
-<li><input disabled="" type="checkbox"> Git</li>
-<li><input checked="" disabled="" type="checkbox"> 一个聪明的大脑（我相信你一定有的）</li>
-</ul>
-<h1 id="前期准备步骤"><a href="#前期准备步骤" class="headerlink" title="前期准备步骤"></a>前期准备步骤</h1><p><strong>Node.js官网下载</strong><br><a href="http://nodejs.cn/download/">Node.js</a><br>选择你所使用的系统和他相应的安装包。windows建议msi<br>安装好后打开终端输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
-<p>如果有版本号就说明安装成功</p>
-<p><strong>Git官网下载</strong><br><a href="https://git-scm.com/">GIt</a></p>
-<p>准备好的话就可以开始搭建了</p>
-<h1 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h1><p><strong>新建博客文件夹</strong><br>在任何地方新建一个文件夹，名称随意，这里建议不要放在C盘，我的名称叫Blog，你也可以使用这个名字（随便起但你要记住）<br><strong>下载Hexo文件</strong><br>打开windows终端，cd到你的博客文件夹<br>输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-<p>跑完命令后输入<code>hexo -v</code>检查是否安装成功，显示版本号即为成功<br>接着输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p>不出意外的话，最后一句话应该是“Start blogging with Hexo!”<br><del><em>如果没有的话，不出意外，应该是出意外了</em></del><br>如果你成功了，这时你的文件夹里应该会出现一堆文件<br>输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>并打开浏览器访问</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:4000/</span><br></pre></td></tr></table></figure>
-<p>就可以看到你的博客在本地运行起来了，好好欣赏一下吧<br>欣赏完必须关闭它，不要急着关闭终端，按下<br><code>Ctrl</code>+<code>C</code><br>他就会关闭了<br><strong>修改配置文件</strong><br>打开终端cd到博客文件夹，输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo clean &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
-<p>并访问</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:4000/</span><br></pre></td></tr></table></figure>
-<p>现在在终端按下<code>Ctrl</code>+<code>C</code>来停止本地访问<br>下面来更改博客的内容<br>打开<code>_config.yml</code>文件，同时对照以下列表修改内容</p>
-<p><code>title</code> 网站标题</p>
-<p><code>subtitle</code> 网站副标题</p>
-<p><code>description</code> 网站描述</p>
-<p><code>keywords</code> 网站的关键词。支持多个关键词。</p>
-<p><code>author</code> 您的名字</p>
-<p><code>language</code> 网站使用的语言。对于简体中文用户来说，使用不同的主题可能需要设置成不同的值，请参考你的主题的文档自行设置，常见的有  <code>zh-Hans</code>和  <code>zh-CN</code>。</p>
-<p><code>timezone</code> 网站时区。Hexo 默认使用您电脑的时区。请参考  <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">时区列表</a>  进行设置，如  <code>America/New_York</code>,  <code>Japan</code>, 和  <code>UTC</code>  。一般的，对于中国大陆地区可以使用  <code>Asia/Shanghai</code>。<br>更改好后保存退出，同样执行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo clean &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
-<p>并访问</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:4000/</span><br></pre></td></tr></table></figure>
-<p>   但你一定要记住，执行完<code>hexo s</code>的命令后一定不要关闭终端，在你想停止本地访问的时候切到终端按下熟悉的<code>Ctrl</code>+<code>C</code><br>  <strong>上传到Github开启访问</strong><br>  用资源管理器打开你的博客文件夹并右键选择<code>Git bash here</code>，如果没有该选项，请检查你的git安装是否正确<br>打开后输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C “你注册github时的邮箱”</span><br></pre></td></tr></table></figure>
-<p>按回车，出现内容再按回车，出现内容再按回车，出现内容再按回车，四次回车，好的<br>出现ssh的方框框就说明成功了<br>资源管理器打开<br>C:\用户（或者User）\你的用户名.ssh<br>在这个文件夹里找到一个名为<code>id.rsa.pub</code>的文件，不要找错了，注意看下右侧的时间，要和你生成key的时间相吻合。打开那个文件复制里面的全部内容<br>打开浏览器，github，登陆一下<br>点击右上角头像旁的小三角，选择<code>setting</code><br>在出现的页面左侧选择<code>SSH and GPG keys</code><br>点击右侧<code>New SSH Key</code><br>title随便起个名字，把你刚才复制的那一大长串字粘贴到下面的<code>key</code>栏<br>点击<code>add ssh key</code>保存即可<br>打开你的git bash，输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-<p>如果出现了你的github用户名说明绑定成功，可以进行下一步骤<br>打开github，新建一个仓库（不是吧，你不会连仓库都不会建吧？？）<br>起名为<code>你的github用户名.github.io</code><br>并开启生成README文件<br>选择public<br>创建仓库<br>下面进行仓库连接<br>复制你的仓库网址，打开本地博客文件夹里的<code>_config.yml</code><br>把最后一行的</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br></pre></td></tr></table></figure>
-<p>替换为</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">你的仓库链接</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
-<p>保存并退出<br>打开windwos终端，cd到你的博客文件夹<br>输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer–git --save</span><br></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cnpm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>你可以挨个试试，第一个报错了就用第二个<br>完成后输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<p>生成页面，再输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-<p>然后</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>他就开始向github上传文件了<br>你可以打开github看看你的仓库，如果里面出现一些文件就说明成功了<br>访问</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://你的github用户名.github.io</span><br></pre></td></tr></table></figure>
-<p>这就是你的博客了，成功！</p>
-<h1 id="写作方法"><a href="#写作方法" class="headerlink" title="写作方法"></a>写作方法</h1><p>Hexo博客的文章撰写采取markdown格式，所以我们需要一个markdown编辑器，网上有很多，可以找找，我用的是<code>Stack Edit</code>，一款在线编辑器，他有下载到桌面的功能，可以满足我们的基础使用<br>打开windows终端，输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;你的新文章的标题&quot;</span></span><br></pre></td></tr></table></figure>
-<p>这样就新建了一个文章，打开</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">博客文件夹\source\_posts</span><br></pre></td></tr></table></figure>
-<p>里面就是存放文章的地方，你可以看到一个和你刚刚创建的文章同名的md文件，打开它开始编辑吧<br>编辑完成后保存退出，打开windows终端，输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
-<p>访问</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:4000/</span><br></pre></td></tr></table></figure>
-<p>预览一下你的文章，确认无误后，再在终端输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo clean &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-<p>等待一会你的文章就上传完毕了，打开</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">你的github用户名.github.io</span><br></pre></td></tr></table></figure>
-<p>即可看到你的博客啦</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
